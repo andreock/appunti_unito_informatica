@@ -1,0 +1,174 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=C,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+
+\title{Spazio euclideo}
+\author{Andrea Canale}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	
+\section{Isometrie}
+
+Un isometria è un isomorfismo $T: V \rightarrow W$(con $g \text{ e } g^{'}$ prodotti scalari) che soddisfa la seguente proprietà:
+
+$$g\left(v_1,v_2\right)=g'\left(T\left(v_1\right),T\left(v_2\right)\right)$$
+
+Un isometria mantiene la lunghezza dei vettori invariata.
+
+Ci sono altri 3 modi per verificarla:
+
+\begin{itemize}
+	\item Esiste una base $B$ tale che vale la proprietà dell'isometria($\forall v_i, v_j \in B$)
+	\item $\forall v \in V$, $||v|| = ||T(v)||$
+	\item $\forall v, w \in W$, $d(v,w) = d(T(v), T(w))$
+\end{itemize}
+
+Inoltre, $T$ è isometria se vale:
+$$[g]_B = [T]^B_B \cdot ^t[g^{'}]_B \cdot [T]^B_B$$
+
+Questo ci torna utile per l'endomorfismo $L_a: \mathbb{R}^n \rightarrow \mathbb{R}^n$ che è isometria se:
+
+$$^t A \cdot A = I_n$$
+
+\section{Isometrie su $\mathbb{R}^2$}
+
+\subsection{Rotazioni}
+
+Una rotazione di angolo $\theta$ è una mappa $L_a: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ definita dalla matrice di rotazione $A=\left(\begin{matrix}cos\left(\theta\right)&-sin\left(\theta\right)\\sin\left(\theta\right)&cos\left(\theta\right)\\\end{matrix}\right)
+$
+
+\subsection{Riflessioni}
+
+Una riflessione di angolo $\theta$ rispetto ad una retta $r$ è una mappa $L_a: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ definita dalla matrice di rotazione $A=\left(\begin{matrix}cos\left(\theta\right)&sin\left(\theta\right)\\sin\left(\theta\right)&-cos\left(\theta\right)\\\end{matrix}\right)
+$
+\\\\
+\textbf{Queste sono le uniche isometrie in $\mathbb{R}^2$}
+
+\section{Matrici ortogonali}
+
+Una matrice $M(n, \mathbb{K})$ è ortogonale se
+$$^t A \cdot A = I_n$$ Ed equivalentemente: $^tA = A^{-1}$
+
+Inoltre, se una matrice è ortogonale sappiamo che il determinante sarà $+1$ se la matrice descrive una rotazione o $-1$ se descrive una riflessione.
+
+\textbf{Tuttavia non tutte le matrici con determinante $\pm 1$ sono ortogonali.}
+
+\section{Isometrie su $\mathbb{R}^3$}
+
+\subsection{Antirotazione}
+
+Un antirotazione è la composizione di una rotazione rispetto ad un asse $r$ e una riflessione rispetto al piano $r^\perp$
+\\
+\textbf{In $\mathbb{R}^3$ ogni isometria è una rotazione o un'antirotazione}
+
+\section{Prodotto vettoriale}
+
+In $\mathbb{R}^3$ possiamo definire un operazione che funziona solo su questo spazio:
+
+$$v\ x\ w=\left(\begin{matrix}v_2w_3-v_3w_2\\v_3w_1-v_1w_3\\v_1w_2-v_2w_1\\\end{matrix}\right)$$
+Questa operazione può essere ricordata con questa formula: $v\ x\ w=det\left(\begin{matrix}e_1&e_2&e_3\\v_1&v_2&v_3\\w_1&w_2&w_3\\\end{matrix}\right)
+$ sviluppando sulla prima riga e prendiamo i coefficienti dei rappresentanti canonici come componenti del vettore.
+
+\subsection{Proprietà del prodotto vettoriale}
+
+\begin{itemize}
+	\item è ortogonale sia a $v$ che a $w$
+	\item Se $v\ x\ w$ è nullo, allora $v$ e $w$ sono dipendenti
+	\item Se $v$ e $w$ sono indipendenti, $v, w, v\ x\ w$ è una base positiva di $\mathbb{R}^3$
+	\item $||v\ x\ w|| = ||v|| \cdot ||w|| - <v,w>$
+	\item $||v\ x\ w|| = ||v|| \cdot ||w|| - sen(\theta)$
+\end{itemize}
+
+Le ultime due proprietà valgono anche per la norma al quadrato(mettendo al quadrato tutti i membri dell'uguaglianza)
+
+\section{Basi positive}
+
+Una base $\{v_1, v_2, v_3\}$ in $\mathbb{R}^3$ è positiva se:
+
+$$det(v_1 | v_2 | v_3) > 0$$
+
+\textbf{La positività di una base dipende dai vettori e dalla loro posizione.}
+
+\section{Sottospazio affine}
+
+Un sottospazio affine di uno spazio vettoriale $V$, dato un vettore $v_0$ è un sottospazio del tipo:
+$$\{w \in W\ |\ v_0 + w\}$$
+
+Due spazi $x+W$ e $y + V$ coincidono se e solo se $W=V$ e $x-y \in W$
+
+Lo spazio $W$ di uno spazio affine $S$ scritto come $x+W$ è detto giacitura di $S$ ed è indicato come $giac(S)$
+\subsection{Forma parametrica e cartesiana di spazi affini}
+
+La forma cartesiana descrive uno spazio attraverso i punti che soddisfano un'equazione lineare omogenea:
+
+è utile per determinare i punti di una funzione.
+
+$$x=\{v\in\mathbb{R}^3|F(v)=0\}$$
+
+La forma parametrica descrive uno spazio attraverso i vettori che lo generano:
+
+$$x=F(y) \text{ Per qualche } F:y \rightarrow \mathbb{R}^3$$
+
+Oppure:
+
+$$\{\begin{pmatrix}
+	0 \\
+	1 \\
+	2
+\end{pmatrix}, t\begin{pmatrix}
+1 \\
+0 \\
+1
+\end{pmatrix}\}$$
+
+
+è utile per determinare se un punto appartiene allo spazio.
+
+Ad esempio con la bisettrice abbiamo:
+
+\begin{itemize}
+	\item In forma cartesiana: $\{(x,y) \in \mathbb{R}^2 | x-y = 0\}$
+	\item In forma parametrica $\{(t,t) \in \mathbb{R}^2 | t \in \mathbb{R}\}$
+\end{itemize}
+
+Entrambi descrivono i punti con le stesse coordinate
+
+\subsection{Intersezione tra spazi affini}
+
+Per calcolare l'intersezione di due spazi affini $S \cap S^{'}$ dobbiamo sempre calcolare un sistema di equazioni indipendentemente dalla forma.
+\end{document}

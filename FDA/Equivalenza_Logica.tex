@@ -1,0 +1,246 @@
+\documentclass[a4paper]{article}
+\usepackage{geometry}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\doublespacing
+\usepackage{setspace} 
+\title{Equivalenza logica}
+\author{Andrea Canale}
+
+\begin{document}
+	
+\maketitle
+
+\begin{spacing}{2.8}
+	\tableofcontents
+\end{spacing}
+\section{Tautologia}
+
+La tautologia è una formula logicamente valida, cioè è vera per ogni valutazione delle lettere proposizionali.
+
+Ad esempio $ A \lor A \Longleftrightarrow A $
+
+Questo perchè non esiste un caso dove $ A \lor A $ è vera e A è falsa.
+
+Si legge $ A \lor A \Longleftrightarrow A $ come $ A \lor A $ se è solo se A
+
+L'operatore logico che usiamo per la tautologia è $ \Longleftrightarrow $
+
+Una tautologia si può scrivere come $ \models A \land B $
+
+\subsection{Leggi di De Morgan}
+
+Un esempio molto importante di tautologia sono le leggi di De Morgan:
+
+$$ \neg(p \lor q) \equiv \neg p \land \neg q $$
+$$ \neg(p \land q) \equiv \neg p \lor \neg q $$
+
+\section{Conseguenza logica}
+
+Una proposizione Q è una conseguenza logica di un insieme di premesse P se e solo se, ogni volta che tutte le premesse in P sono vere, anche q deve essere vera.
+
+La differenza con la tautologia è che la tautologia è sempre vera mentre la conseguenza logica dipende dalle premesse P.
+
+L'operatore logico della conseguenza logica è $ \rightarrow $
+
+Una conseguenza logica si può scrivere come $ A \models B $
+
+Esempio: Data la frase: "Se piove, la strada è bagnata", può essere divisa in 2 parti: La premessa e la conseguenza.
+
+La premessa(P) è "Se piove"
+La conseguenza(Q) è "La strada è bagnata"
+
+Quindi possiamo renderla conseguenza logica scrivendo $ P \rightarrow Q $
+
+\section{Derivazione}
+
+Un argomento è una serie proposizioni che concludono una proposizione scritte come: 
+
+\[
+\begin{array}{ r l }
+	& p_1 \\
+	& p_2 \\
+	& \vdots \\
+	& p_n \\
+	\cline{2-2}
+	\therefore & q
+\end{array}
+\]
+Dove $ p_1, p_2, ..., p_n $ sono gli argomenti(premesse) mentre q è la conclusione.
+
+\textbf{Un argomento è valido se la conclusione segue le ipotesi e ciò può essere dimostrato attraverso le regole d'inferenza.}
+
+\subsection{Regole di inferenza note}
+
+\subsubsection{Modus ponens}
+\[
+\begin{array}{ r l }
+	& p \rightarrow q \\
+	& p \\
+	\cline{2-2}
+	\therefore & q
+\end{array}
+\]
+
+\subsubsection{Modus tollens}
+\[
+\begin{array}{ r l }
+	& p \rightarrow q \\
+	& \neg q \\
+	\cline{2-2}
+	\therefore & \neg p
+\end{array}
+\]
+
+\subsubsection{Addizione}
+\[
+\begin{array}{ r l }
+	& p \\
+	\cline{2-2}
+	\therefore & p \lor q
+\end{array}
+\]\\
+
+\subsubsection{Semplificazione}
+\[
+\begin{array}{ r l }
+	& p \land q \\
+	\cline{2-2}
+	\therefore & p
+\end{array}
+\]
+
+\subsubsection{Congiunzione}
+\[
+\begin{array}{ r l }
+	& p \\
+	& q \\
+	\cline{2-2}
+	\therefore & p \land q
+\end{array}
+\]
+
+\subsubsection{Silogismo ipotetico}
+\[
+\begin{array}{ r l }
+	& p \rightarrow q \\
+	& q \rightarrow r \\
+	\cline{2-2}
+	\therefore & p \rightarrow r
+\end{array}
+\]
+
+\subsubsection{Silogismo disgiuntivo}
+\[
+\begin{array}{ r l }
+	& p \lor q \\
+	& \neg p \\
+	\cline{2-2}
+	\therefore & q
+\end{array}
+\]
+
+\section{Insieme universo}
+
+C'è un insieme universale $U$(universo) che contiene tutti gli elementi e tutti gli insiemi esistenti. Si assume che ogni insieme possa contenere solo elementi che appartengono anche ad $U$.
+
+Questo ci porta al \textbf{paradosso di Russell} che denota i limiti della logica classica.
+
+\subsection{Paradosso di Russell}
+
+L'insieme di tutti gli insiemi che non appartengono a sé stessi appartiene a sé stesso se e solo se non appartiene a sé stesso. Questo perchè un insieme è sempre sottoinsieme di se stesso tuttavia se noi imponiamo che non sia così, è impossibile decidere se $R \in R$.
+
+Definiamo l'insieme $R = def\{X | X \notin X\}$
+
+Abbiamo due casi:
+\begin{itemize}
+	\item $R \in R$, allora vuol dire che $R \notin R$ perchè abbiamo la condizione $x \notin x$
+	\item $R \in R$, allora vuol dire $R \in R$
+\end{itemize}
+
+Questa è una contraddizione ed è chiamato paradosso di Russell.
+
+%Può essere anche espressa tramite \textbf{il paradosso del barbiere}: «In un villaggio vi è un solo barbiere, un uomo ben sbarbato, che rade tutti e solo gli uomini del villaggio che non si radono da soli. La domanda è: il barbiere si fa la barba da solo?»
+
+\section{Quantificatori universali}
+
+\subsection{Quantificatore "Per ogni"}
+
+Il quantificatore "per ogni" $ \forall $, indica che una proposizione è vera per ogni valore di un insieme
+
+\subsubsection{Regole d'inferenza per il qualificatore $ \forall $}
+
+Usando la regola d'eliminazione abbiamo:
+\[
+\begin{array}{ r l }
+	& \forall xP(x) \\
+	\cline{2-2}
+	\therefore & P(u) \text{per ogni u $ \in $ U}
+\end{array}
+\]
+
+Usando la regola d'introduzione abbiamo:
+
+\[
+\begin{array}{ r l }
+	& P(u) \text{per ogni u $ \in $ U} \\
+	\cline{2-2}
+	\therefore & \forall xP(x)
+\end{array}
+\]
+
+Dove u è un elemento generico indistinguibile dagli altri dell'insieme universo(e che può essere scambiato con $ x $)
+
+\subsection{Quantificatore esiste}
+
+Il quantificatore "esiste" $ \exists $, indica che per almeno un elemento di un insieme, la proposizione è vera
+
+\subsubsection{Controesempio}
+
+Se troviamo un valore del dominio di discorso che rende falso il quantificatore esistenziale, possiamo concludere che quell'elemento è un controesempio.
+
+\subsubsection{Regole d'inferenza per il qualificatore $ \exists $ }
+
+Usando la regola d'eliminazione abbiamo:
+\[
+\begin{array}{ r l }
+	& \exists xP(x) \\
+	\cline{2-2}
+	\therefore & P(u) \text{per qualche u $ \in $ U}
+\end{array}
+\]
+
+Usando la regola d'introduzione abbiamo:
+
+\[
+\begin{array}{ r l }
+	& P(u) \text{per qualche u $ \in $ U} \\
+	\cline{2-2}
+	\therefore & \exists xP(x)
+\end{array}
+\]
+
+\section{Leggi di De Morgan generalizzate}
+
+Esistono anche le leggi di De Morgan che valgono per il qualificatore esistenziale e quello universale e sono:
+
+$$ \neg(\forall x P(x)) \equiv \exists x \neg P(x) $$
+$$ \neg(\exists x P(x)) \equiv \forall x \neg P(x) $$
+
+\section{Qualificatori innestati}
+
+Possiamo anche innestare i qualificatori universali ed esistenziali, per formare proposizioni del tipo: $ \forall x \exists y P(x,y) $
+
+Il dominio del discorso è univoco per entrambi i qualificatori, ad esempio: $ \mathbb{Z} $ 
+
+\textbf{Il dominio di discorso non diventa prodotto cartesiano $\mathbb{Z} x \mathbb{Z}$}
+\end{document}

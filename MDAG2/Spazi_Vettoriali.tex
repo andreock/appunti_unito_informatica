@@ -1,0 +1,133 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+\title{Spazi vettoriali}
+\author{Andrea Canale}
+
+\begin{document}
+	
+\maketitle
+\tableofcontents
+%\section{Lo spazio euclideo}
+
+%Lo spazio euclideo di dimensione n, è l'insieme $ \mathbb{R}^n = \mathbb{R} x \mathbb{R} x ... x \mathbb{R} $
+
+%Un vettore viene identificato dalla seguente notazione: $ v = \begin{pmatrix}
+%	x_1 \\
+%	\vdots \\
+%	x_n 
+%\end{pmatrix}  $
+
+\section{Gruppo}
+
+Un gruppo è un insieme G dotato di 2 operazione binaria identificate come $ * $ tale che $$ G x G \rightarrow G $$
+
+Un gruppo deve soddisfare le seguenti proprietà:
+
+\begin{itemize}
+	\item Esistenza di un elemento neutro per l'operazione binaria $ e \in G \text{ tale che } e \cdot g = g$
+	\item Vale la proprietà associativa: $ (a * b) * c = a * (b * c) $
+	\item Per ogni elemento di G, esiste un inverso $ a^{-1} \text{ tale che } a * a^{-1} = a^{-1} * a = e $
+\end{itemize}
+
+Inoltre, se vale la proprietà commutativa, il gruppo si dice abeliano o commutativo.
+
+\subsection{Esempi}
+
+$ (\mathbb{Z}, +), (\mathbb{C}, +) $ sono gruppi abeliani
+
+$ (\mathbb{Z}, \cdot), (\mathbb{C}, \cdot) $ non sono gruppi abeliani in quanto manca l'inverso a 0
+
+Se togliamo 0, otteniamo gruppi abeliani $ (\mathbb{Z} \backslash \{0\}, \cdot), (\mathbb{R} \backslash \{0\}, \cdot) $
+
+\section{Campo}
+
+Un campo è un insieme $ \mathbb{K} $ con 2 operazioni $ + \text{ e } \cdot $ tale che
+
+\begin{itemize}
+	\item L'addizione $(\mathbb{K}, +)$ è un gruppo abeliano con elemento neutro $ 0_k $ (non è necessariamente 0)
+	\item $(\mathbb{K} \backslash \{0\}, \cdot)$ è un gruppo abeliano con elemento neutro $ 1_k $(non è necessariamente 1)
+	\item Vale la proprietà distributiva: $ a \cdot (b+c)=a \cdot b+a \cdot c $
+\end{itemize}
+
+\section{Spazi vettoriali}
+
+Dato un campo $ \mathbb{K} $, gli elementi di $ \mathbb{K} $ sono detti scalari.
+
+Uno spazio vettoriale di $ \mathbb{K} $ è un insieme V di elementi, detti vettori, dotato di due operazioni:
+
+\begin{itemize}
+	\item Somma di vettori, indicata con $ + $
+	\item Prodotto scalare, che associa $ v \in V $ ad uno scalare $ \lambda \in \mathbb{K} $ tale che $ \lambda v \in V$
+\end{itemize}
+
+Gli spazi vettoriali devono soddisfare le seguenti proprietà:
+
+\begin{itemize}
+	\item $ (V, +) $ è un gruppo abeliano
+	\item Vale la proprietà distributiva: $ \lambda\left(v+w\right)=\lambda v+\lambda w $
+	\item Vale la proprietà associativa: $ \left(\lambda+u\right)v=\lambda u+\lambda v $ 
+	\item Vale la proprietà commutativa: $ \left(\lambda u\right)v=\lambda\left(uv\right) $
+	\item Esiste un elemento neutro della moltiplicazione
+	\item Esiste un elemento neutro per l'addizione che è l'origine dello spazio
+\end{itemize}
+
+\section{Lo spazio euclideo}
+
+Lo spazio euclideo di dimensione n è uno spazio che contiene tutte le n-uple dei numeri reali ed identificato dall'insieme $ \mathbb{R}^n $.
+
+$$ \mathbb{R}^n = \mathbb{R} x \mathbb{R} x ... x \mathbb{R} $$
+
+Lo spazio euclideo è fornito di due operazioni:
+
+\begin{itemize}
+	\item Somma tra vettori
+	\item Prodotto scalare
+\end{itemize}
+
+\subsection{Somma tra vettori}
+Definita come la somma riga per riga
+
+$$ x+y=\left(\begin{matrix}x_1+y_1\\\vdots\\x_n+y_n\\\end{matrix}\right) $$
+
+\subsection{Prodotto scalare}
+
+Dato un vettore e uno scalare $ \lambda \in \mathbb{R} $, il prodotto scalare è definito come la moltiplicazione dello scalare per ogni elemento del vettore.
+
+$$ \lambda \cdot x=\left(\begin{matrix}x_1\cdot\lambda\\\vdots\\x_n\cdot\lambda\\\end{matrix}\right) $$
+
+\section{Spazio dei polinomi}
+
+Lo spazio $ \mathbb{K}[x] $ contiene i polinomi con coefficiente in $\mathbb{K}$ di grado inferiore o uguale a $x$.
+
+\section{Sottospazio vettoriale}
+
+Sia V uno spazio vettoriale su un campo $ \mathbb{K} $, un sottospazio W di V è un sottoinsieme di uno spazio che soddisfa 3 assiomi:
+
+\begin{itemize}
+	\item L'origine $ 0_v $ deve essere contenuta in W, quindi un sottospazio avrà almeno sempre un elemento e avrà sempre l'elemento neutro dell'addizione
+	\item Se $ v, v' \in W $ allora $ v + v' \in W$
+	\item Se $ v \in W $ e $ \lambda \in \mathbb{K} $, allora $ \lambda v \in W$
+\end{itemize}
+
+Ogni spazio vettoriale ha almeno 2 sottospazi:
+
+\begin{itemize}
+	\item Il sottospazio banale $ W = {0} $, l'origine
+	\item Il sottospazio totale $ W = V $, formato da tutti i vettori di V
+\end{itemize}
+
+Chiaramente ci possono anche essere altri sottospazi.
+
+\end{document}

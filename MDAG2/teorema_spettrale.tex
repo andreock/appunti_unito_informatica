@@ -1,0 +1,117 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=C,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+
+\title{Teorema Spettrale}
+\author{Andrea Canale}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	
+\section{Prodotti hermitiani}
+
+Sia V uno spazio vettoriale complesso. Un prodotto hermitiano $V\ x\ V \rightarrow \mathbb{C}$ con le proprietà:
+
+\begin{itemize}
+	\item $\textlangle v + v^{'}, w \textrangle = \textlangle v, w \textrangle + \textlangle v^{'}, w \textrangle$
+	\item $\textlangle \lambda v, w \textrangle = \lambda \textlangle v, w \textrangle$
+	\item $\textlangle w, v \textrangle = \overline{ \textlangle v, w \textrangle}$
+	\item $\textlangle v, v \textrangle = \overline{ \textlangle v, v \textrangle}$
+	\item $\textlangle v, w + w^{'} \textrangle = \textlangle v, w \textrangle + \textlangle v, w^{'}\textrangle$
+	\item $\textlangle v, 0 \textrangle = \textlangle 0, w \textrangle = 0$
+\end{itemize}
+
+Questo prodotto è sequilineare perchè è lineare sul primo fattore ma sul secondo fattore è lineare solo per somma.
+
+\subsection{Prodotto hermitiano definito positivo}
+
+Un prodotto hermitiano è definito positivo se $\textlangle v, v \textrangle \textgreater 0$ $\forall v \neq 0$
+
+Inoltre possiamo definire la norma di un prodotto hermitiano definito positivo come: $$||v|| = \sqrt{\textlangle v, v \textrangle} = 0 \text{ se v $\neq$ 0}$$ 
+
+\subsection{Prodotto hermitiano euclideo}
+
+Il prodotto hermitiano euclideo è definito come: $$\textlangle x,y \textrangle = ^tx \cdot \overline{y}$$
+\section{Matrici hermitiane}
+
+Una matrice $H \in M(n, \mathbb{C})$ è hermitiana se: $$^tH = \overline{H}$$
+
+\textbf{Notiamo che sulla diagonale di una matrice hermitiana abbiamo sempre numeri reali.}
+
+Inoltre, se tutte le entrate sono reali, allora H è hermitiana se e solo se H è simmetrica.
+
+\section{Matrice associata ad un prodotto hermitiano}
+
+Sia V uno spazio vettoriale complesso e $B=\{v_1, ..., v_n\}$, una base di V. La matrice associata al prodotto hermitiano è data da: $$H_{ij} = \textlangle v_i, v_j \textrangle$$
+
+Questa matrice associata a $g$ in $B$ è scritta come: $[g]_B$
+
+\section{Endomorfismi autoaggiunti}
+
+Un endomorfismo $T: V \rightarrow V$ è autoaggiunto se: $$\textlangle T(v), w \textrangle = \textlangle v, T(w) \textrangle$$
+
+Data $A$ la matrice di $T$ associata a $B$, T è autoaggiunto, se e solo se, $A$ è hermitiana.
+\\\\
+\textbf{Corollario}
+
+\begin{itemize}
+	\item Sia $A \in M(n, \mathbb{C})$, l'endomorfismo $L_a: \mathbb{C}^n \rightarrow \mathbb{C}^n$ è autoaggiunto, se e solo se $A$ è hermitiana
+	\item Sia $A \in M(n, \mathbb{C})$, l'endomorfismo $L_a: \mathbb{R}^n \rightarrow \mathbb{R}^n$ è autoaggiunto, se e solo se $A$ è simmetrica
+\end{itemize}
+Questo corollario vale solo per il prodotto hermitiano/scalare euclideo.
+
+\section{Sottospazi invarianti}
+
+Dato uno spazio $V$ con prodotto scalare/hermitiano definito positivo, il sottospazio $U \subset V$ è invariante se $$T(U) \subset U$$
+
+Notiamo che se T è autoaggiunto e $U$ è un sottospazio invariante, allora anche $U^\perp$ è T-invariante
+
+\section{Teorema spettrale}
+
+Un endomorfismo $T: V \rightarrow V$ è autoaggiunto se e solo se V ha una base ortogonale formata da autovettori di T e se tutti questi autovettori sono reali.
+
+Per le matrici reali questi fatti sono equivalenti:
+
+\begin{itemize}
+	\item A è simmetrica
+	\item $L_a$ è autoaggiunto rispetto al prodotto scalare euclideo
+	\item $L_a$ e $A$ ha una base ortogonale di autovettori(con autovalori reali)
+	\item Esiste una matrice ortogonale $M$ tale che $M^{-1} \cdot A \cdot M = D$ che è diagonale
+\end{itemize}
+
+Questo ci torna molto utile per capire se una matrice ha una base ortogonale, infatti basta verificare che sia simmetrica perchè valgano tutte le altre proprietà del corollario.
+\end{document}

@@ -1,0 +1,181 @@
+\documentclass[a4paper]{article}
+\usepackage{geometry}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\doublespacing
+\title{Stringhe e relazioni}
+\author{Andrea Canale}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Sequenze e parole}
+Dato un alfabeto di simboli, possiamo formare una parola cioè una sequenza di simboli.
+
+Ad esempio: $A=\{la, sul, tetto, gatta\}$ formerà la parola "la gatta sul tetto".
+
+L'insieme di tutte le parole che si possono formare sull'alfabeto A viene indicato come $A^*$.
+
+Questo insieme è infinito perchè possiamo sempre aggiungere un simbolo ad un parola.
+
+\section{Numero di Gödel}
+
+Per un alfabeto generico A, finito o numerabile:
+
+\begin{itemize}
+	\item Numeriamo i simboli $ka$ $\forall a \in A$
+	\item Ogni parola $a_1, ..., a_n$  diventa il numero: $2^{ka_1} \cdot 3^{ka_2} \cdot 5^{ka_3} \cdot ... \cdot p_n^{ka_n}$
+\end{itemize}
+
+Dove $p_n$ è un numero primo.
+
+Il numero che otteniamo da questa moltiplicazione è detto numero di Gödel
+
+\section{Operazioni su parole}
+
+L'insieme delle parole $A^*$ ha due operazioni:
+
+\begin{itemize}
+	\item Inversione: $w \rightarrow W^r$, ad esempio $\text{felice}^r=\text{ecilef}$
+	\item Concatenazione: $w_1, w_2 \rightarrow w_1w_2$, ad esempio: $w_1=\text{abra}$ $w_2=\text{cadabra}$ $w_1w_2=\text{abracadabra}$
+\end{itemize}
+
+Notiamo che l'insieme $A^*$ è un \textbf{monoide} cioè una struttura algebrica simile ad un gruppo che non ha un inverso.
+
+Questo perchè, per la concatenazione vale l'associatività e ha come elemento neutro $\lambda$ cioè la parola vuota che non cambia il risultato della concatenazione.
+
+Inoltre, per il monoide $A^*$ esiste la funzione lunghezza che ritorna la lunghezza di una parola. Questa funzione è un \textbf{omomorfismo}.
+
+\subsection{Monoidi}
+
+Un monoide $M$ è una struttura algebrica che rispetta 3 proprietà:
+
+\begin{itemize}
+	\item $ a * b \in M $
+	\item Vale l'associatività
+	\item Esiste un elemento neutro
+\end{itemize}
+
+Un gruppo è un monoide dotato d'inverso
+
+\section{Sequenze}
+
+Una sequenza è una funzione dove il dominio è sottoinsieme degli interi.
+
+Viene indicata come $S(n)$ dove $n$ è il numero massimo nel dominio
+
+La sua cardinalità è $n!$.
+
+Le stringhe sono sequenze formate da un alfabeto di partenza.
+\section{Classificazione di sequenza}
+
+\subsection{Sequenze crescenti}
+
+Una sequenza è crescente se: $s(n) < s(n+1) < s(n+2)$
+
+\subsection{Sequenza decrescenti}
+
+Una sequenza è decrescente se: $s(n) > s(n+1) > s(n+2)$
+
+\subsection{Sequenza non crescenti}
+
+Una sequenza è non crescente se: $i < j$ e $S_i \geq S_j$
+
+\subsection{Sequenza non decrescenti}
+
+Una sequenza è non decrescente se: $i < j$ e $S_i \leq S_j$
+
+\section{Sottosequenze}
+
+Data una sequenza, una sottosequenza è un sottoinsieme di quella sequenza.
+
+Ad esempio:
+
+Sequenza $A=\{a,a,b,c,q\}$
+
+Si possono ottenere le seguenti sottosequenze: $\{\{a,b\}, \{b,c\}, \{b,q\}, ...\}$
+
+\subsection{Sottosequenze note}
+
+Una sequenza di soli numeri può essere scritta come: $[n] = \{1, ..., n\}$
+
+Una famiglia d'insiemi di lunghezza n può essere scritta come: $A^n$
+
+
+\section{Relazione}
+Una relazione binaria tra un insieme X e un insieme Y è l'insieme dei prodotti cartesiano tra X e Y. Denotiamo l'insieme delle relazioni con $R$.
+
+
+\section{Proprietà delle relazioni}
+
+\subsection{Relazioni riflessive}
+
+Una relazione è riflessiva se esiste $(x,x) \in R$ $\forall x \in X$ dove $R$ è la relazione $XxY$
+
+\subsection{Relazioni transitive}
+
+Una relazione è transitiva se vale $(x,y) \in R$ e $(y,z) \in R$, allora $(x,z) \in R$ $\forall x,y,z \in R$
+
+\subsection{Relazioni simmetriche}
+
+Una relazione è simmetrica se $(x,y) \in R$ e $(y,x) \in R$ $\forall x,y \in R$
+
+\subsection{Relazioni antisimmetriche}
+
+Una relazione è antisimmetrica se $x \neq y$ allora $(x,y) \notin R$ oppure $(y,x) \notin R$, allora y non è in relazione con x.
+
+Notiamo che se $x=y$, la relazione si considera antisimmetrica.
+
+Ad esempio:
+
+$S=\{(0,0), (1,1), (2,2), (3,3)\}$ è antisimmetrica perchè $\forall x,y \in S$, $x=y$
+
+\section{Relazioni d'ordine/totali}
+
+Una relazione è definita d'ordine se valgono tre proprietà:
+
+\begin{itemize}
+	\item Transitiva
+	\item Riflessiva
+	\item Antisimmetrica
+\end{itemize}
+
+Esempi di relazioni d'ordine:
+
+\begin{itemize}
+	\item P(x) rispetto all'inclusione
+	\item $\leq$ su $\mathbb{N}$
+	\item Su $\mathbb{Z}$, $x|y$
+\end{itemize}
+
+\section{Chiusura transitiva}
+
+Data una relazione binaria $R$, definitiamo la chiusura transitiva $R^{'} = T(r)$ come la più piccola relazione transitiva e riflessiva che contiene R
+
+$R^{'} = \bigcap \{S|S \text{ è riflessiva e transitiva }, R \subset S \}$
+
+\section{Relazioni d'equivalenza}
+
+Una relazione di equivalenza è una relazione che soddisfa 3 proprietà:
+
+\begin{itemize}
+	\item è riflessiva
+	\item è transitiva
+	\item è simmetrica
+\end{itemize}
+
+\section{Congruenza}
+
+Una congruenza su X è una relazione di equivalenza che mette in relazione due insiemi.
+
+
+\end{document}

@@ -1,0 +1,144 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+
+\title{Combinatoria}
+\author{Andrea Canale}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+
+\section{Principio moltiplicativo del conteggio}
+
+Se dobbiamo risolvere k compiti e per il primo compito abbiamo $n_1$ modi per risolverlo, per il secondo abbiamo $n_2$ modi per risolverlo e così via, il numero totale di modi per risolvere i compiti consecutivamente è dato da $$\prod_{i=1}^k n_i$$ cioè la produttoria di tutti i modi.
+
+\section{Ordinamento}
+
+Dato un insieme A con cardinalità n, un ordinamento di A è una funzione biettiva $f: I_n \rightarrow A$, dove $I_n$ è l'insieme ordinato degli indici.
+
+L'insieme di tutti gli ordinamenti di A è denotato come $O_a$
+
+La sua cardinalità si può calcolare attraverso la funzione fattoriale:
+$$|O_a|=n!$$
+
+Esempio:
+
+$A=\{a,b\}$ i suoi possibili ordinamenti sono $O_a=\{(a,b), (b,a)\}$, infatti $|O_a|=2!=4$
+
+\section{Anagrammi}
+
+Gli anagrammi sono dei casi particolari di ordinamenti dove l'insieme di elementi di cui fare un ordinamento contiene delle ripetizioni.
+
+La funzione ordinamento che crea gli anagrammi non è sicuramente iniettiva in quanto potrebbero esserci delle ripetizioni.
+
+La cardinalità dell'insieme di tutti i possibili anagrammi su un insieme è $$\frac{n!}{r_1! \cdot ... \cdot r_k!}$$
+Dove $r_1 ... r_k$ sono il numero di ripetizioni dei simboli.
+
+Esempio:
+
+$A=\{O,R,O\}$ ha come ordinamenti $O_a=\{(O,R,O), (R,O,O), (O,R,O), (O,O,R)\}$, infatti $|O_a|=\frac{3!}{2!}=\frac{6}{2}=3$ perchè l'elemento duplicato non si conta
+
+\section{Disposizioni}
+
+\subsection{Disposizioni con ripetizione}
+Sia A un insieme finito con cardinalità n e k $\geq$ 1. Una disposizione con ripetizione di ordine k in A è un'insieme di K elementi di A che si potrebbero ripetere tra loro.
+
+Il numero totale di disposizioni con ripetizione è dato da $$n^k$$
+
+Esempio:
+
+Dato l'insieme $D=\{A,B,C\}$, le loro disposizioni saranno: $\{(A,A), (A,B), (A,C), (B,A), (B,B), (B,C), (C,A), (C,B), (C,C)\}$, infatti la cardinalità di questo insieme è $3^2=9$
+
+\subsection{Disposizioni semplici}
+Sia A un insieme finito con cardinalità n e k $\geq$ 1. Una disposizione semplice di ordine k in A è un'insieme di K elementi di A distinti tra loro.
+
+La formula per calcolare l'insieme di tutte le possibili disposizioni semplici è 
+$$D_{n,k}=\frac{n!}{(n-k)!}$$
+
+Notiamo che la permutazione $D_{n,n}=n!$
+
+Esempio:
+
+Se vogliamo calcolare tutte le possibili password formate da 8 caratteri sull'insieme A composto da tutte le lettere dell'alfabeto e i numero da 0 a 9, faremo il seguente calcolo:
+$$D_{36,8}=\frac{36!}{28!} = 1220096908800$$
+
+\subsection{Disposizioni circolari}
+
+In una disposizione circolare l'ordine relativo degli oggetti non cambia se viene traslato di una posizione e quindi otteniamo:
+$$\frac{n!}{n}=(n-1)!$$
+Ad esempio una disposizione circolare può essere: Disporre persone in un cerchio, ecc...
+
+\section{Combinazioni semplici}
+
+Sia A un insieme finito con cardinalità n e sia k un insieme tra 0 e n. Si dice combinazione semplice di ordine k il numero di sottoinsiemi C con $|C|=k$. Il numero di combinazioni semplici possibili si può calcolare attraverso questa formula:
+
+$$C_{n,k}=\frac{n!}{k! \cdot (n-k)!}$$
+
+Esempio:
+
+Nel SuperEnalotto vengono estratti 6 numeri su 90. Quante sono le estrazioni possibili?
+
+$$C_{90,6} = \frac{90 \cdot 89 \cdot 88 \cdot 87 \cdot 86 \cdot 85}{6!} = 622614630$$
+
+\section{Combinazioni con ripetizione}
+
+Sia A un insieme finito con cardinalità n e sia k un insieme tra 0 e n. Si dice combinazione con ripetizione di ordine k il numero di sottoinsiemi C con $|C|=k$ dove gli elementi possono essere ripetuti tra loro. Il numero di combinazioni semplici possibili si può calcolare attraverso questa formula:
+
+$$C_{n,k}=C_{k+n-1,n-1}=\frac{(k+n-1)!}{(n-1)!k!}$$
+
+
+\section{Coefficienti binomiali}
+
+Un modo più compatto per scrivere il numero di combinazioni semplici di ordine k è usare la seguente notazione:
+$$ \begin{pmatrix}
+	n \\
+	k 
+\end{pmatrix}= \frac{n!}{k! \cdot (n-k)!} $$
+
+A questo punto il numero di combinazioni semplici su un insieme con cardinalità n di ordine k può essere scritta come: $$ C_{n,k} = \begin{pmatrix}
+	n \\
+	k 
+\end{pmatrix}$$
+
+\subsection{Formule dei coefficienti binomiali}
+\begin{itemize}
+	\item $\forall n \geq 0$, $\begin{pmatrix}
+		n \\
+		0 
+	\end{pmatrix}=\begin{pmatrix}
+	n \\
+	n 
+	\end{pmatrix}=1$
+	\item Per ogni coppia di numeri k ed n tali che $n \geq 0$ e $0 \leq k \leq n$, vale $\begin{pmatrix}
+		n \\
+		k 
+	\end{pmatrix}=\begin{pmatrix}
+		n \\
+		n - k
+	\end{pmatrix}=1$
+	\item Per ogni coppia di numeri k ed n tali che $n \geq 1$ e $1 \leq k \leq n$, vale $\begin{pmatrix}
+		n - 1\\
+		k - 1
+	\end{pmatrix} + \begin{pmatrix}
+		n - 1 \\
+		k
+	\end{pmatrix}=\begin{pmatrix}
+	n \\
+	k
+	\end{pmatrix}=$
+\end{itemize}
+
+\subsection{Formula del binomio di Newton}
+\end{document}

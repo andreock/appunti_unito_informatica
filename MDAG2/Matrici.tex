@@ -1,0 +1,230 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+\title{Matrici}
+\author{Andrea Canale}
+
+\begin{document}
+	
+\maketitle
+\tableofcontents
+\section{Matrici}
+
+Sia fissato un campo $\mathbb{K}$, una matrice con m righe e n colonne a coefficienti in $\mathbb{K}$ è una tabella del tipo:
+
+$$ M = \begin{pmatrix}
+	a_{11} & \cdots & a_{1m} \\
+	\vdots & \ddots & \vdots \\
+	a_{m1} & \cdots & a_{mn} 
+\end{pmatrix}  $$
+
+dove tutti i coefficienti $a$ sono elementi del campo $\mathbb{K}$.
+
+Le righe verranno indicate come $ A_i = (a_{i1} \cdots a_{in}) $
+
+Le colonne verranno indicate come $ A^j = \begin{pmatrix}
+	a_{11} \\
+	\vdots \\
+	a_{1m} 
+\end{pmatrix}$
+
+\section{Lo spazio delle matrici}
+
+Le matrici formano uno spazio che ha due operazioni: Somma e prodotto scalare
+
+\subsection{Somma tra matrici}
+
+Date due matrici delle stessa dimensione, possiamo fare le somma:
+
+$$A+B=\left(\begin{matrix}a_{11}+b_{11}&\cdots&a_{1n}+b_{1n}\\\vdots&\ddots&\vdots\\a_{m1}+b_{m1}&\cdots&a_{mn}+b_{mn}\\\end{matrix}\right) $$
+
+dove facciamo la somma degli elementi allo stesso indice tra le varie matrici.
+
+\subsection{Prodotto scalare}
+
+Data una matrice con coefficienti in $\mathbb{K}$ e $ \lambda \in \mathbb{K} $, il prodotto scalare è definito così:
+
+$$\lambda A=\left(\begin{matrix}\lambda a_{11}&\cdots&\lambda a_{1n}\\\vdots&\ddots&\vdots\\\lambda a_{m1}&\cdots&\lambda a_{mn}\\\end{matrix}\right)$$
+
+
+Ossia la moltiplicazione tra lo scalare e ogni componente della matrice.
+
+\section{Classificazione di matrici quadrate}
+
+Una matrice quadrata è una matrice che ha lo stesso numero di righe e di colonne.
+
+Possono essere classificate in 6 modi diversi. Ognuna di queste classificazioni forma un sottospazio dello spazio delle matrici quadrate n x n, scritto formalmente: $M(n, n, \mathbb{K})$.
+
+\subsection{Matrici diagonali}
+
+Una matrice diagonale è una matrice che ha elementi solo sulla sua diagonale e sul resto delle posizioni ha 0. Sono contenute dal sottospazio $P(n)$
+
+$$ M = \left(\begin{matrix}2&0\\0&\sqrt2\\\end{matrix}\right)$$
+
+\subsection{Matrici triangolari superiori}
+Sono matrici dove lo zero è in posizione $ i, j $ con $ i > j$. Sono contenute dal sottospazio $T(n)$
+
+$$\left(\begin{matrix}2&8\\0&-1\\\end{matrix}\right)$$ 
+
+\subsection{Matrici triangolari inferiori}
+
+Sono matrici dove lo zero è in posizione $ i, j $ con $ i < j$. Sono contenute dal sottospazio $T^i(n)$
+
+$$\left(\begin{matrix}8&0\\9&-13\\\end{matrix}\right)$$
+
+\subsection{Matrici triangolari}
+
+Sono matrici che sono o triangolari inferiori o superiori
+
+\subsection{Matrici simmetriche}
+
+Sono matrici dove $ a_{ij} = a_{ji} $, simmetriche rispetto alla diagonale. Sono contenute dal sottospazio $S(n)$
+
+$$\left(\begin{matrix}1&7&-2\\7&2&0\\-2&0&4\\\end{matrix}\right)$$
+
+\subsection{Matrici antisimmetriche}
+
+Sono matrici dove $ a_{ij} = -a_{ji} $, simmetriche rispetto alla diagonale con coefficiente negativo. Sono contenute dal sottospazio $A(n)$
+
+$$\left(\begin{matrix}1&7&-2\\-7&2&0\\2&0&4\\\end{matrix}\right)$$
+
+Alcune matrici hanno più classificazioni contemporaneamente.
+
+Non tutte le matrici quadrate soddisfano queste classificazioni.
+
+\section{Trasposta di una matrice}
+
+Data una matrice $ A=\left(\begin{matrix}2&1\\1&0\\5&7\\\end{matrix}\right) $, la sua trasposta è la matrice che si ottiene scambiando righe e colonne. è indicata come $^tA$
+
+$$ ^tA=\left(\begin{matrix}2&1&5\\1&0&7\\\end{matrix}\right) $$
+
+Valgono le seguenti proprietà:
+\begin{itemize}
+	\item $^t(A+B)=^tA+^tB$
+	\item $ ^t(\lambda A)=\lambda \cdot ^{t}A$
+	\item Una matrice è quadrata se $ A = ^tA$
+	\item Una matrice è antisimmetrica se $ A = -^tA$
+\end{itemize}
+
+\section{Prodotto tra matrici}
+
+Date due matrici $A\in M\left(m,n,\mathbb{K}\right)$ e $ B\in M\left(n,p,\mathbb{K}\right) $, il prodotto $ A \cdot B $ p una matrice n x p, definita come:
+
+$$ \left(A\cdot B\right)_{i,j}=\sum_{k=1}^{n}{A_{i,k}}\cdot B_{k,i} $$
+
+Questo prodotto si può fare se il numero di colonne di A è uguale al numero di righe di B.
+
+Non vale la proprietà commutativa
+
+Esempio di un prodotto tra matrici:
+
+$$\left(\begin{matrix}1&2&4\\-3&5&6\\\end{matrix}\right)\cdot\left(\begin{matrix}7&-8&9\\10&14&11\\-13&12&15\\\end{matrix}\right)=$$
+
+$$ \left(\begin{matrix}1\cdot7+2\cdot10+4\cdot\left(-13\right)&-8+14\cdot2+9\cdot4&9+11\cdot2+15\cdot4\\-3\cdot7+5\cdot10+6\cdot\left(-13\right)&-3\cdot-8+5\cdot14+6\cdot12&-3\cdot9+5\cdot11+6\cdot15\\\end{matrix}\right)
+$$
+
+\section{Matrice identità}
+
+La matrice identità è una matrice definita come $$ I_n=\left(\begin{matrix}1&\cdots&0\\\vdots&\ddots&\vdots\\0&\cdots&1\\\end{matrix}\right) $$ 
+
+Cioè la matrice che ha tutti zero tranne sulla diagonale e ha come proprietà:
+
+\begin{itemize}
+	\item Il prodotto tra matrici con matrice identità come fattore è commutabile
+\end{itemize}
+
+La matrice identità è l'elemento neutro dello spazio delle matrici
+
+\section{Traccia di una matrice qudrata}
+
+Data una matrice quadrata, la traccia è la somma degli elementi sulla diagonale.
+
+\section{Determinante di una matrice}
+
+$ \sigma $ è una permutazione in $ S_n $ ed è un prodotto di un numero k finito di trasposizione(scambi di 2 elementi)
+
+Il segno di $\sigma$ è il prodotto delle k trasposizioni tali che $sgn(\sigma)=(-1)^k$
+
+Data una matrice quadrata n x n, il determinante è definito come:
+
+$$ detA=\sum_{\sigma\in S_n}{sgn}\left(\sigma\right)\cdot a_{1\sigma\left(1\right)}\cdot...\cdot a_{n\sigma\left(n\right)}$$
+
+\section{Calcolo del determinante di matrici $N<2$}
+
+Questi determinanti si calcolano perchè il numero di permutazioni in $S_2$ è gestibile senza ricorrere ad algoritmi particolari come vedremo dopo.
+
+\subsection{N=1}
+
+$ detA = a_{11} $
+
+\subsection{N=2}
+
+$ detA = (a_{11} \cdot a_{22}) - (a_{12} \cdot a_{21}) $
+
+\subsection{Matrici triangolare superiore}
+$ detA = a_{11} \cdot a_{22} \cdot ... \cdot a_{nn} $
+
+Questo perchè gli zeri annullano la riga su cui calcoliamo il determinante
+
+\section{Sviluppo di Laplace}
+
+Se vogliamo calcolare il determinante di una qualsiasi matrice n x n, possiamo usare la seguente formula fissando una riga $i$ arbitrariamente
+
+$$detA=\sum_{j=1}^{n}{\left(-1\right)^{i+j}}a_{ij}\cdot detC_{ij}$$
+
+Possiamo anche fissare una colonna $j$ arbitrariamente e la formula diventa così:
+
+$$detA=\sum_{i=1}^{n}{\left(-1\right)^{i+j}}a_{ij}{\cdot detC}_{ij}$$
+
+\subsection{Cofattori}
+
+$ {\left(-1\right)^{i+j}} \cdot det(C_{ij}) $ è detto cofattore di $A_{ij}$. Se calcoliamo i cofattori in tutte le posizioni otterremo la matrice dei cofattori.
+
+\subsection{Proprietà del determinante}
+
+\begin{itemize}
+	\item Se una riga o una colonna ha zero, lo sviluppo di quella riga/colonna è zero
+	\item $ \det{\left(\lambda \cdot A\right)}=\lambda\cdot\det{\left(A\right)} $
+	\item Data una matrice A con 2 righe uguali, possiamo concludere che $ detA = 0 $
+\end{itemize}
+
+
+\section{Inverso di una matrice}
+
+Una matrice A quadrata è invertibile se esiste una matrice inversa $ A^{-1} $ tale che $$A{\cdot A}^{-1}=A^{-1}\cdot A=I_n$$
+
+In questo caso la commutatità, in questo caso, garantisce l'esistenza dell'inverso.
+
+\section{Teorema di Binet}
+
+Se A e B sono matrici quadrati, allora $$\det{\left(AB\right)}=\det{\left(A\right)}\cdot\det{\left(B\right)}$$
+
+\subsection{Invertibilità per Binet}
+
+Se A è invertibile, possiamo trovare il determinante del suo inverso attraverso questa formula
+
+$$\det{\left(A^{-1}\right)}=\frac{1}{detA}=\left(detA\right)^{-1}$$
+
+Da questa formula possiamo dedurre che una matrice è invertibile se e solo se $$ detA \neq 0 $$
+
+Infatti $\frac{1}{0}$ sarebbe impossibile
+
+\subsection{Calcolo di una matrice inversa dati i cofattori}
+
+Se la matrice è invertibile, possiamo calcolare la matrice inversa attraverso questa formula
+
+$$A^{-1}=\frac{1}{detA}^t\left(cofA\right)$$
+
+
+\end{document}

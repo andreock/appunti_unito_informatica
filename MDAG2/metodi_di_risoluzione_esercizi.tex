@@ -1,0 +1,87 @@
+\documentclass[a4paper]{article}
+\usepackage{graphicx}
+\graphicspath{ {./esercizi_risoluzione/} }
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Load the setspace package
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{setspace} 
+\title{Metodi di risoluzione esercizi}
+\author{Andrea Canale}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Esercizi span}
+
+Per trovare il sottospazio generato dobbiamo controllare che l'elemento sia definito nel sottospazio e  la dipendenza delle soluzioni proposte
+
+Ad esempio dato questo esercizio: 
+
+\includegraphics[scale=0.5]{span1}
+
+Possiamo escludere gli elementi $b(x) $ e $ e(x) $ in quanto non rispettano condizione $p(1) = 0$
+
+Poi troviamo che $c$ ed $f$ sono indipendenti(in questo caso si vede senza fare il sistema lineare)
+
+Infine notiamo che $d(x) $ viene generato da $a(x) \cdot x$ quindi $d(x)$ va escluso
+
+Concludiamo che la risposta corretta è la b: $Span(a,c,f)$
+
+\subsection{Trovare combinazione lineare con polinomi}
+
+Per trovare una combinazione lineare tra polinomi, come ad esempio: 
+
+\includegraphics[scale=0.4]{comb_lin_polinomi}
+
+Bisogna calcolare:
+
+\begin{itemize}
+	\item $\lambda_1(p_1(x))$
+	\item $\lambda_2(p_2(x))$
+	\item $\lambda_3(p_3(x))$
+\end{itemize}
+
+Otteniamo: $$ \lambda_1 x^2 + \lambda_1 x + \lambda_1 + \lambda_2 x^2 + \lambda_2 x - \lambda_2 + \lambda_3 x - 2\lambda_3 = (x+1)^2 $$
+
+Ora raccogliamo $x^2, x, \text{termini noti} $:
+
+$$(\lambda_1 + \lambda_2) x^2 + (\lambda_1 + \lambda_2 + \lambda_3)x + \lambda_1 - \lambda_2 - 2\lambda_3 = x^2 + 2x + 1$$
+
+Adesso possiamo trasferire il tutto in un sistema lineare:
+
+\begin{equation*}
+	\left\{
+	\begin{alignedat}{3}
+		\lambda_1 & +{} & \lambda_2 & = 1 \\
+		\lambda_1 & +{} & \lambda_2 & +{} & \lambda_3 & = 2 \\
+		\lambda_1 & -{} & \lambda_2 & -{} & 2\lambda_3 & = 1
+	\end{alignedat}
+	\right.
+\end{equation*}
+
+Dove nella prima riga abbiamo isolato ed eguagliato $x^2$, nella seconda $x$ e nella terza i termini noti.
+
+Ora possiamo risolvere il sistema lineare e trovare le soluzioni che in questo caso saranno:
+
+\begin{itemize}
+	\item $\lambda_1 = 2$
+	\item $\lambda_2 = -1$
+	\item $\lambda_3 = 1$
+\end{itemize}
+
+Che corrispondono alla risposta (d)
+\section{Esercizi sottospazio}
+
+Per trovare un sottospazio, dobbiamo controllare le sue 3 condizioni, ad esempio dato il seguente esercizio:
+
+\includegraphics[scale=0.4]{sottospazio1}
+
+Bisogna controllare le 3 condizioni per tutti i sottospazi dati
+\end{document}

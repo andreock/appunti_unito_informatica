@@ -1,0 +1,153 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+
+\title{Insiemi}
+\author{Andrea Canale}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Definizione insieme}
+
+Un insieme è una collezione ben definita di oggetti
+
+Gli elementi in un insieme sono univoci
+
+Può essere identificato come $ A = \{1, 2, 3, ...\} $
+Possiamo anche specificare una condizione: $ A = \{ x \in \mathbb{Q} | x^2 - 1 = 0 \} $
+\section{Simboli degli insiemi}
+
+\subsection{Inclusione}
+$ \in $ , L'insieme include, può essere usato solo per gli elementi
+
+La sua negazione è $ \notin $
+
+\subsection{Qualificatori universali}
+
+\subsubsection{Per ogni}
+$ \forall $, indica che tutti gli elementi di un insieme rispettano una condizione
+
+\subsubsection{Esiste}
+$ \exists $, indica che esiste almeno un elemento nell'insieme che rispetta una condizione
+
+\subsubsection{Negazione}
+$ \tilde{} $, indica il negato di una condizione
+
+\section{Cardinalità di un insieme}
+La cardinalità di un insieme, indicata come $ |A| = n $, è il numero di elementi che un insieme contiene
+
+Un insieme senza elementi è detto vuoto ed è indicato come Ø = {} che è diverso da A={Ø} che contiene un elemento
+
+\section{Sottoinsiemi}
+I sottoinsiemi di un insieme A sono gli insiemi costituiti dagli elementi di A.
+
+Un insieme B è sottoinsieme di A se ogni suo elemento è presente anche in A.
+
+La relazione che lega A e B si può scrivere così: $ B \subset A $
+
+Esistono 3 tipologie di insiemi:
+
+\begin{itemize}
+	\item Sottoinsiemi banali, Ø e l'insieme stesso
+	\item Sottoinsiemi proprio, dove $ B \subset A $ con $ B \neq A $
+\end{itemize}
+
+\subsection{Insieme delle parti}
+L'insieme delle parti è definito da tutti i sottoinsiemi di A.
+$$ P(A) = \{ B | B \subset A \} $$
+
+Ad esempio con $ A = \{ a, b\} $, l'insieme delle parti è
+$$ P(A) = \{ \emptyset, {a}, {b}, A\} $$
+
+Due insiemi sono uguali se $ A \subseteq B $  e $ B \subseteq A $ e $ P(A) = P(B) $
+
+\subsection{Intersezione e unione}
+
+\subsubsection{Intersezione $ \cap $}
+Dati A e B, $ A \cap B = \{ x | x \in A, x \in B \} $
+
+\subsubsection{Unione $ \cup $}
+Dati A e B, $ A \cup B = \{ x | x \in A, x \in B \} $
+
+\section{Proprietà degli insiemi}
+
+\subsection{Associatività}
+$$ (A \cap B) \cap C = A \cap (B \cap C) $$
+
+\subsection{Idenpotente}
+Un insieme intersecato o unito per un insieme vuoto, dà un insieme vuoto.
+
+\subsection{Distribuibilità}
+$$ A \cap (B \cup C) = (A \cap B) \cup (A \cup C) $$
+$$ A \cup (B \cap C) = (A \cup B) \cap (A \cup C) $$
+
+\section{Differenza tra 2 insiemi}
+
+Siano A e B due insiemi finiti, la loro differenza è denotata come: 
+
+$$ A \backslash B = \{x \in A | x \notin B\} $$
+
+\subsection{Complementare}
+
+Nel caso in cui A sia sottoinsieme di B, l'insieme formato dalla loro differenza è detto complementare ed è definito come: $ C_b(A) = B \backslash A $
+\section{Leggi di De Morgan}
+
+Dati 3 insiemi A, B e C, valgono le seguenti regole:
+
+$$ C_x(A \cap B) = C_x(A) \cup C_x(B) $$
+$$ C_x(A \cup B) = C_x(A) \cap C_x(B) $$
+
+\section{Ricoprimento}
+
+Dato un insieme A e una famiglia di sottoinsiemi $ X = \{Ai\}_{i \in X} $ , il suo ricoprimento è definito come la famiglia di sottoinsiemi che uniti danno l'insieme A di partenza. è definito attraverso questa notazione:
+
+$$ \bigcup_{i \in X}A_i = X $$
+
+\section{Partizioni}
+
+Dato un insieme A e una famiglia di sottoinsiemi $ X = \{Ai\}_{i \in X} $ che sono ricoprimento di un insieme, essi sono una partizione di un insieme se soddisfano 3 requisiti:
+
+\begin{itemize}
+	\item Sono ricoprimento di A
+	\item $ \forall i \in X, A_i \neq\emptyset $
+	\item $ \forall i, j \in X $ tali che $ i \neq j $ i sottoinsiemi Ai e Aj sono disgiunti, $ A_i \cap A_j  = \emptyset $. Ossia i sottoinsiemi sono diversi tra loro
+\end{itemize}
+
+\section{Prodotto cartesiano}
+
+Dati due insiemi A e B, il loro prodotto cartesiano e definito da un insieme che ha come elementi la coppia di un elemento dell'insieme A e un elemento dell'insieme B:
+
+$$ A X B = \{(a,b) | a \in A, b \in B\} $$
+
+La cardinalità di questo insieme A X B e definita come: $ |AXB| = |A| \cdot |B| $
+
+Il prodotto cartesiano viene usato per esprimere relazioni tra insiemi.
+
+\section{Proprietà delle relazioni}
+
+\begin{itemize}
+	\item Dato un elemento di A X B, esso è veramente una relazione se $ (a, b) \in \mathbb{R} $
+	\item Una relazione viene detta riflessiva se $ \forall a \in A$, a è in relazione con se stesso, quindi $ a \in \mathbb{R} x \mathbb{R} $
+	\item Relazione simmetrica
+	\item Transitiva
+	\item Equivalente, se è riflessiva, simmetrica e transitiva
+	\item Dato un insieme A, esiste una relazione tra l'insieme delle relazioni di equivalenza e la sua partizione
+\end{itemize}
+
+
+
+\end{document}

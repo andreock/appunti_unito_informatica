@@ -1,0 +1,296 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+\usepackage{soul}
+\usepackage{xcolor}
+\usepackage[overload]{empheq} % for Solution 2
+% Load the setspace package
+\usepackage{setspace}
+% Using \doublespacing in the preamble
+% changes text to double line spacing
+\doublespacing
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=C,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+
+\title{Applicazioni lineari}
+\author{Andrea Canale}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	
+\section{Applicazioni lineari}
+
+Dati due spazi vettoriali $V$ e $W$ sullo stesso campo $\mathbb{K}$, un'applicazione lineare è una funzione $f: V \rightarrow W$ tale che valgono i seguenti assiomi:
+
+\begin{itemize}
+	\item $f(0) = 0$
+	\item $f(v+w) = f(v) + f(w) \ \forall v,w \in V$
+	\item $f(\lambda v) = \lambda f(v) \ \forall \lambda \in \mathbb{K} \ \forall v \in V$
+\end{itemize} 
+
+Osserviamo che se $v=\lambda_1 v_1 + ... + \lambda_n v_n$, osserviamo che:
+
+$f(v)=f(\lambda_1 v_1) + ... + f(\lambda_n v_n) = \lambda_1 f(v_1) + ... + \lambda_n f(v_n)$
+
+E quindi possiamo unire le proprietà insieme.
+
+\subsection{Funzioni note non lineari}
+
+\begin{itemize}
+	\item Funzioni che hanno un grado maggiore di 1, ad esempio: $f\left(\begin{matrix}a\\b\\\end{matrix}\right)=\left(\begin{matrix}2a^2+b\\a-2b\\\end{matrix}\right)
+	$
+	\item Funzioni che hanno termini noti, ad esempio: $f\left(\begin{matrix}a\\b\\\end{matrix}\right)=\left(\begin{matrix}a+2\\a-b-1\\\end{matrix}\right)$
+\end{itemize}
+
+\subsection{Funzioni note lineari}
+
+\begin{itemize}
+	\item La funzione nulla(composta da soli zeri)
+	\item La funzione identità(1 sulla diagonale)
+\end{itemize}
+
+\section{Nucleo e immagine}
+
+\subsection{Nucleo}
+Il nucleo di una funzione $f: V \rightarrow W$ è definito come: 
+
+$$ker(f) = \{v \in V | f(v) = 0_w\}$$
+
+Sappiamo inoltre che il nucleo è sempre sottospazio di V perchè contiene l'origine 0 e i vettori $v \in V$
+
+La funzione $f$ è iniettiva se e solo se $ker(f) = \{0\}$
+
+\hl{Per trovare il nucleo bisogna risolvere il sistema f(v) = 0}
+
+Esempio:
+
+$$ f: \mathbb{R}^2 \rightarrow \mathbb{R}^3 \text{ definita come: } f(\begin{pmatrix}
+	x \\
+	y 
+\end{pmatrix}) = \begin{pmatrix}
+2x+y \\
+x-y \\
+3x+2y 
+\end{pmatrix}  $$
+
+Dobbiamo risolvere il sistema $\begin{pmatrix}
+	2 & 1 & 0 \\
+	1 & -1 & 0 \\
+	3 & 2 & 0 
+\end{pmatrix}$ e, in questo caso, avrebbe 0 soluzioni cioè il nucleo è vuoto.
+
+Inoltre la dimensione del nucleo può essere calcolata come: $n-rk(A)$ dove $n$ è il numero di incognite del sistema lineare.
+
+\subsection{Immagine}
+L'immagine di una funzione $f: V \rightarrow W$ è definita come:
+
+$$ Im = \{w \in W | \exists v \in V \text{ tale che } f(v)=w\}$$
+
+L'immagine è sempre sottospazio di W perchè contiene l'origine 0 e i vettori $w \in W$
+
+Inoltre sappiamo che la funzione $f$ è suriettiva se e solo se $Im(f) = W$
+
+L'immagine può essere trovata calcolando lo Span delle colonne della matrice associata all'applicazione lineare.
+
+Esempio:
+
+$$ f: \mathbb{R}^2 \rightarrow \mathbb{R}^3 \text{ definita come: } f(\begin{pmatrix}
+	x \\
+	y 
+\end{pmatrix}) = \begin{pmatrix}
+	2x+y \\
+	x-y \\
+	3x+2y 
+\end{pmatrix}  $$
+
+Rispetto alla base canonica. 
+
+\hl{Dobbiamo risolvere controllare che le colonne della matrice associata(in questo caso alla base canonica) generino uno Span. In questo caso abbiamo $\mathbb{R}^2$ e quindi otteniamo la matrice} $$\begin{pmatrix}
+	2 & 1 \\
+	1 & -1 \\
+	3 & 2 
+\end{pmatrix}$$. Notiamo che le colonne sono indipendenti tra loro e quindi $Span=\{\begin{pmatrix}
+2 \\
+1 \\
+3 
+\end{pmatrix}, \begin{pmatrix}
+1 \\
+-1 \\
+2 
+\end{pmatrix}\}$
+
+Un ulteriore prova di ciò può essere fatto trovando $dim(Im(f)) = rk(f) = 2$
+\iffalse
+\subsection{Generatori dell'immagine}
+
+Se $v_1,...,v_n$ sono generatori di V, allora $f(v_1),...,f(v_n)$ sono generatori di $I_m(f)$
+
+Da ciò ne deduciamo due cose:
+
+\begin{itemize}
+	\item $Im f = Span(f(v_1), ..., f(V_n))$
+	\item $Im L_a = Span(A^1, ..., A^n)$ dove A è una matrice $m\ \text{x}\ n$
+\end{itemize}
+
+Concludiamo che per ogni matrice A vale:
+$$rk(A) = dim(Span(A^1, ..., A^n)) = dimImL_a$$
+\fi
+
+\section{Matrice associata all'applicazione lineare}
+
+Sia $f: V \rightarrow W$ un'applicazione lineare, $B=\{v_1, ..., v_n\}$ una base di V e $C=\{w_1, ..., w_n\}$ una base di W, possiamo rappresentare qualsiasi vettore di V come combinazione lineare di C. Questo ci permette di rappresentare una funzione lineare come matrice. è denotata come: $[f]_C^B$
+
+%%Per trovare le coordinate dei vettori di B in C, usiamo un sistema lineare dove eguagliamo i vettori in C ai vettori in B e risolviamo il sistema fino a trovare i coefficienti che saranno le nostre coordinate.
+
+\textbf{Vale la seguente proprietà: $[f(v)]_C = [f]_C^B \cdot [v]_B$}
+
+\section{Teorema della dimensione}
+
+Sia $f: V \rightarrow W$ una funzione lineare. Se V ha dimensione finita n, allora:
+$$dimKerf+dimImf=n$$
+
+Nel caso di un applicazione lineare $L_a: \mathbb{K}^n \rightarrow \mathbb{K}^n$, abbiamo che:
+$$kerL_a=\{x \in \mathbb{K}^n | Ax = 0\} = S$$
+
+Ciò è lo spazio delle soluzioni del sistema $Ax = 0$. Per calcolare la dimensione di questo spazio, possiamo usare il teorema di Rouchè-Capelli:
+$$dimS = n - rk(A)$$
+
+\section{Classificazioni}
+\begin{itemize}
+	\item Se $dimKer(f) \neq 0$, allora f è iniettiva
+	\item Se $dimIm(f) \geq dimW$, allora f è suriettiva
+	\item Se $dimW = dimV$, allora f è iniettiva
+\end{itemize}
+
+\section{Isomorfismi}
+
+Un isomorfismo è un applicazione lineare biettiva. Due spazi vettoriali V, W sono isomorfi se esiste un isomorfismo $f: V \rightarrow W$. Inoltre dato che l'isomorfismo è biettivo, esisterà anche una funzione inversa.
+
+Quindi due spazi vettoriali W,V sono isomorfi, se e solo se, $dimW = dimV$.
+
+Da ciò deduciamo che tutti gli spazi vettoriali su $\mathbb{K}$ sono isomorfi rispetto a $\mathbb{K}^n$
+
+\section{Matrice del cambiamento di base}
+
+Sia V uno spazio vettoriale, B e C due basi di V. La matrice del cambiamento di base da B in C è definita come: $A=[id_v]_C^B$
+
+Questa matrice contiene nella sua j-esima colonna, le coordinate di $v_j$ rispetto alla base C.
+
+La matrice del cambiamento di base quindi codifica nella sue colonne le coordinate di ciascun elemento rispetto a B.
+
+Per calcolare la matrice del cambiamento di base ci sono due tecniche:
+
+\begin{itemize}
+	\item Scrivere un sistema lineare dove cerchiamo eguagliamo i vettori di C a quelli di B e troviamo i coefficienti adatti a rendere vera l'uguaglianza
+	\item Usare la base canonica.
+\end{itemize}
+
+Il metodo che utilizzeremo prevederà l'utilizzo della base canonica.
+
+Esempio:
+
+Dato l'endomorfismo $T=id: \mathbb{R}^2 \rightarrow \mathbb{R}^2$, scrivere la matrice associata rispetto alle base $B=\{\begin{pmatrix}
+	2 \\
+	4 
+\end{pmatrix}, \begin{pmatrix}
+4 \\
+2 
+\end{pmatrix}\}$ e $C=\{\begin{pmatrix}
+2 \\
+0 
+\end{pmatrix}, \begin{pmatrix}
+0 \\
+-2 
+\end{pmatrix}\}$
+
+Data la base canonica $E=\{e_1, e_2\}$, i vettori in base canonica saranno: $$ [id]^B_E=\begin{pmatrix}
+2 & 4 \\
+4 & 2 
+\end{pmatrix}  $$
+
+e 
+
+$$[id]^C_E=\begin{pmatrix}
+	2 & 0 \\
+	0 & -2 
+\end{pmatrix}$$
+
+\hl{Adesso la matrice del cambiamento di base si può ottenere facendo:} $$[id]^B_C=[id]^B_E \cdot [id]^E_C=[id]^B_E \cdot ([id]^C_E)^{-1} \cdot A$$
+
+Dove A è la matrice associata all'applicazione lineare(in questo caso $I_2$ quindi la omettiamo)
+
+Ed otteniamo $$\begin{pmatrix}
+	2 & 4 \\
+	4 & 2 
+\end{pmatrix} \cdot \begin{pmatrix}
+\frac{1}{2} & 0 \\
+0 & -\frac{1}{2} 
+\end{pmatrix} = \begin{pmatrix}
+1 & -2 \\
+2 & -1 
+\end{pmatrix}$$
+
+\section{Composizione di applicazioni lineari}
+
+Se due funzioni f e g sono lineari, la loro composizione sarà lineare.
+
+Inoltre vale la seguente proprietà: $L_a \cdot L_b = L_{ab}$
+
+\section{Endomorfismi}
+
+Sia V uno spazio vettoriale, un endomorfismo è un'applicazione lineare $f: V \rightarrow V$.
+
+Da ciò ne ricaviamo che la matrice associata ad f con B una base di V è $[f]^B_B$
+
+\section{Matrici simili}
+
+Due matrici A, B sono simili se esiste una matrice invertibile tale che $A=M^{-1} \cdot B \cdot M$.
+
+Se due matrici sono simili allora:
+
+\begin{itemize}
+	\item Il loro rango è uguale
+	\item Il loro terminante è uguale
+\end{itemize}
+
+Inoltre se A è invertibile anche B è invertibile.
+\end{document}

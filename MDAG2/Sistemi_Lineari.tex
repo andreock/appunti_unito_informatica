@@ -1,0 +1,128 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+\title{Sistemi lineari}
+\author{Andrea Canale}
+
+\begin{document}
+	
+\maketitle
+\tableofcontents
+\section{Sistemi lineari}
+
+Un sistema lineare è un insieme di k equazioni lineari(di primo grado) in n variabile
+
+$$\left\{\begin{matrix}a_{11}x_1+...+\left\{a_1n\right\}x_n=b_1\\\vdots\\a_{k1}x_1+...+a_{kn}x_n=b_k\\\end{matrix}\right.$$
+
+Dove $x$ sono le \textbf{incognite} e $a$ i \textbf{coefficienti} delle incognite mentre $b$ sono i \textbf{termini noti}. Coefficienti e termini noti appartengono ad un campo $\mathbb{K}$, per questa ragione i sistemi lineari si possono rappresentare come matrici.
+
+$$\left(\begin{matrix}a_{11}&\cdots&a_{1n}\\\vdots&\ddots&\vdots\\a_{k1}&\cdots&a_{kn}\\\end{matrix}\right)\left(\begin{matrix}x_1\\\vdots\\x_k\\\end{matrix}\right)=\left(\begin{matrix}b_1\\\vdots\\b_k\\\end{matrix}\right)
+$$
+
+Dove la prima matrice è detta la matrice dei coefficienti, il secondo vettore è quello delle incognite e la terza il vettore dei termini noti.
+
+La soluzione di questo sistema è un vettore che sostituito alle incognite rende vera l'uguaglianza.
+
+\section{Sistema omogeneo associato}
+
+Dato un sistema del tipo $ \begin{matrix}a_{11}x+...+a_{1n}x_n=b_1\\\vdots\\a_{k1}x_1+...+a_{kn}x_n=b_k\\\end{matrix} $, il sistema omogeneo associato a questo sistema è lo stessbb o sistema con i termini noti messi a 0 $\left\{\begin{matrix}a_{11}x+...+a_{1n}x_n=0\\\vdots\\a_{k1}x_1+...+a_{kn}x_n=0\\\end{matrix}\right.$
+
+Denotiamo come $S$, l'insieme delle soluzioni del sistema lineare.
+
+Denotiamo come $S_0$, l'insieme delle soluzioni del sistema omogeneo associato.
+
+$S_0$ forma un sottospazio di $\mathbb{K}^n$ perchè contiene sicuramente l'origine $0$.
+
+$S$ in generale non è un sottospazio perchè non è certo che contenga 0.
+
+Se $S \neq \emptyset$ può essere generata prendendo qualsiasi elemento $s \in S_0$ e sommandoci tutti i vettori in $S_0$
+
+\section{Sottospazio affine}
+
+$S$ forma un sottospazio affine.
+
+Un sottospazio affine ha la forma:
+
+$$S=\{x+w|w \in W\}$$
+
+\section{Pivot di una riga}
+Il pivot di una riga è il primo elemento $\neq 0$ che è presente in una riga partendo da sinitra verso destra
+
+Una matrice è ridotta a scalini se il pivot di ogni riga è sempre più a destra della riga che la precede, ad esempio:
+
+$$\left(\begin{matrix}1&0&-2&0\\3&1&0&2\\0&0&2&1\\\end{matrix}\right) $$ non è ridotta a scalini
+
+$$\left(\begin{matrix}0&1&2&4\\0&0&-1&0\\0&0&0&0\\\end{matrix}\right) $$ è ridotta a scalini, l'ultima riga non ha pivot
+
+\section{Rango di una matrice}
+
+Data una matrice A, il rango di A è la dimensione dello spazio generato dalle sue colonne. Quindi il rango di A è il numero di colonne linearmente indipendenti di A.
+
+Il rango può anche essere calcolato come il numero di pivot della matrice ridotta a scalini.
+
+\section{Mosse di Gauss}
+
+Le mosse di Gauss sono procedimenti utili per cambiare la struttura della matrice senza cambiare il risultato del sistema. Sono 3:
+
+\begin{itemize}
+	\item Scambiando due righe il risultato non cambia
+	\item Moltiplicando gli elementi di una riga per $\lambda \neq 0$, la soluzione non cambia
+	\item Aggiungendo o sottraendo ad una riga, un'altra riga moltiplicata per $\lambda$, la soluzione non cambia
+\end{itemize}
+
+\textbf{Queste mosse non funzionano per le colonne perchè cambierebbero la posizione delle variabili}
+
+Combinando queste mosse possiamo ottenere una matrice ridotta a scalini, questo procedimento prende il nome di algoritmo di Gauss.
+
+\textbf{Le mosse di Gauss cambiano il determinate}
+
+\section{Algoritmo di Gauss-Jordan}
+L'algoritmo di Gauss-Jordon è un algoritmo che permette la risoluzione di sistema lineari usando le mosse di Gauss. Si può sintetizzare in 3 passi fondamentali:
+
+\begin{itemize}
+	\item Ridurre la matrice a scalini
+	\item Mettere 0 sopra ad ogni pivot
+	\item Mettere i pivot a 1
+\end{itemize}
+
+Eseguendo questi passi, riusciamo ad ottenere il valore delle incognite senza procedere con sostituzioni o altre tecniche.
+
+Tuttavia non sempre un sistema lineare a soluzioni. L'esistenza delle soluzioni viene verificata attraverso il \textbf{teorema di Rouchè-Capelli}
+
+\section{Teorema di Rouchè-Capelli}
+
+Il teorema di Rouchè-Capelli ci permette di capire se un sistema ha soluzioni. 
+
+Dato un sistema lineare, sappiamo che ci sono soluzioni, se e solo se, B(il vettore dei termini noti) è combinazione lineare di A(la matrice dei coefficienti)
+
+Usiamo quindi la definizione di rango e il numero di colonne della matrice $A$ $n$ e abbiamo tre casistiche:
+
+\begin{itemize}
+	\item $rk(A|B) > rk(A)$ abbiamo 0 soluzioni
+	\item $rk(A|B) = rk(A) = n$ abbiamo 1 soluzione
+	\item $rk(A|B) = rk(A) < n$ abbiamo $\infty$ soluzioni
+\end{itemize}
+
+Inoltre possiamo dedurre che se $ detA \neq 0$ esiste una sola soluzione ed è invertibile.
+
+Inoltre, sappiamo che se abbiamo n vettori e il rango della matrice del sistema è minore di n, allora ci sono soluzioni.
+
+Una riga con soli 0, viene considerata senza pivot.
+
+\section{Coordinate}
+
+Se $v_1, ..., v_n$ formano una base V, allora $v \in V$ può essere scritto come combinazione lineare univocamente.
+
+I numeri $\lambda_1, ..., \lambda_n$ che creano la combinazione lineare, sono le coordinate di $v$ rispetto alla base $v_1, ..., v_n$
+\end{document}

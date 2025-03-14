@@ -1,0 +1,193 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+\usepackage{graphicx}
+\graphicspath{ {./grammatiche_imgs/} }
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+
+\title{Grammatiche e linguaggi}
+\author{Andrea Canale}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+\section{Grammatica}
+
+Una grammatica è costituita dà:
+
+\begin{itemize}
+	\item Un insieme finito di simboli non terminali $N$
+	\item Un insieme finito di simboli terminali $I$
+	\item Un insieme di produttorie
+	\item Un simboli di partenza $\sigma$
+\end{itemize}
+
+Denotiamo con $G=(N, T, P, \sigma)$
+\\\\
+Una produttoria associa un simbolo non terminale ad un simbolo terminale oppure ad una stringa formata da simboli terminali e non terminali
+\\\\
+Un linguaggio è l'insieme di tutte le parole che si possono formare con questa grammatica.
+\\\\
+Una parola è formata da una grammatica quando non abbiamo più simboli non terminali nella stringa.
+
+Esempio:
+
+Data la grammatica:
+
+$$Frase \rightarrow SN\ SV $$
+$$SN \rightarrow Articolo\ N$$
+$$N \rightarrow Studente\ |\ Libro$$
+$$Articolo \rightarrow Il\ |\ lo$$
+$$SV \rightarrow Leggi\ SN\ | Brucia\ SN $$
+
+Dove Frase è il simbolo d'inizio, 
+possiamo scrivere la frase: Lo studente legge il libro.
+Notiamo che sulla sinistra abbiamo i simboli non terminali e sulla destra abbiamo le produttorie, dove la pipe significa "oppure"
+
+\section{Derivazioni}
+
+Una stringa $s_1$ è derivabile da un altra $s_2$ se nella loro grammatica esiste una produttoria(o un insieme di produttorie) tale che si riesce ad ottenere la stringa $s_2$ partendo da $s_1$.
+\\\\
+Il linguaggio generato da una grammatica consiste in tutte le stringhe derivate in maniera finita. \textbf{Una parola derivata infinite volte non ne fa parte.}
+\\\\
+Si dice che una parola è derivata da una grammatica se si può scrivere come attraverso una grammatica.
+\section{Sintassi BNF}
+
+La sintassi BNF(o backus normal form oppure Backus-Naur form) è una sintassi per produrre grammatiche comoda per essere trascritta su computer.
+
+La produttoria $S \rightarrow T$ si scrive come $S ::= T_1 | T_2 | ... | T_n$
+ 
+\section{Tipi di grammatiche}
+
+\subsection{Grammatiche di tipo 0}
+
+Grammatiche molto generali, si basana su insieme ricorsivamente numerali.
+
+\subsection{Grammatiche di tipo 1}
+
+$A \sigma B \rightarrow A\sigma$
+
+Grammatiche contestuali(context-sensitive), c'è almeno una termine nonterminale in una stringa.
+
+Inoltre la parola vuota non può essere usata in una produttoria.
+
+\subsection{Grammatiche di tipo 2}
+
+$A \rightarrow \sigma$
+
+Grammatiche context-free. C'è sempre un simbolo non terminale sulla sinistra. A destra c'è qualsiasi simbolo.
+
+\subsection{Grammatiche di tipo 3}
+
+Grammatiche regolari. Formati da:
+
+$A \rightarrow \sigma$ oppure $A \rightarrow aB$ oppure $A \rightarrow \lambda$
+
+Sono equivalenti agli automi a stati finiti. 
+\\\\
+\textbf{$A$ e $B$ in questi esempi sono non terminali mentre $\sigma$ è un terminale.}
+
+Un linguaggio si identifica in base al tipo di grammatica.
+\\\\
+Notiamo inoltre che due grammatiche sono equivalenti se generano lo stesso linguaggio.
+
+\textbf{Notiamo che una grammatica regolare è anche context-free e che una grammatica context-free senza forme $A \rightarrow \lambda$ è una grammatiche context-sensitive. Una grammatica di questo tipo è anche regolare}
+
+\section{Automi a stati finiti non deterministici}
+
+Possiamo convertire una grammatica in automi a stati finiti che ha le seguenti caratteristiche:
+
+$$
+	\begin{tabular}{||c | c||} 
+		\hline
+		Grammatica & Automi  \\
+		\hline
+		Insieme dei simboli terminali & Alfabeto di input \\
+		\hline
+		Stati & Insieme dei simboli non terminali \\
+		\hline
+		Stato iniziale & Simboli di partenza \\
+		\hline
+		Funzione di transizione & Produttorie \\
+		\hline
+		Stati accettanti & Simboli S tali che $S \rightarrow \lambda $ \\ 
+		\hline
+	\end{tabular}
+$$
+
+L'insieme delle stringhe generate da una grammatica è lo stesso accettato da un automa di questo tipo.
+
+Tuttavia alcune grammatiche non possono essere rappresentate con automi a stati finiti deterministici, ad esempio:
+
+\includegraphics[width=0.7\linewidth]{grammatica_esempio_automa}
+
+Produrebbe un automa del tipo: 
+
+\includegraphics[width=0.4\linewidth]{automa1}
+
+Tuttavia la produttoria $C \rightarrow b$ non può essere rappresentata. Allora introduciamo uno stato ausialiario $F$ tale che: $$C \rightarrow bF \text{ e } F \rightarrow \lambda$$
+
+Tuttavia questo stato non ha successive transizioni e quindi il suo comportamento è "imprevedibile" per questo un automa del genere è detto non deterministico.
+
+\includegraphics[width=0.4\linewidth]{grammatiche_imgs/automa2}
+
+Un automa a stati finiti non deterministico è caratterizzato da: 
+
+\begin{itemize}
+	\item Un insieme finito di simboli $I$ in entrata
+	\item Un iniseme finito di stati $S$
+	\item Una funzione $f: S x I \rightarrow P(S)$ per lo stato successivo
+	\item Una sottoinsieme di $S$ di stati accettanti $A$
+	\item Uno stato iniziale $\sigma$
+\end{itemize}
+
+Notiamo che non tutti gli stati hanno una funziona di transizione associata.
+
+Perchè una stringa sia accettata in un automa a stati finiti non deterministici dobbiamo controllare che: \begin{itemize}
+	\item Esiste una sequenza di stati che determina la stringa(tra le varie possibili)
+	\item Lo stato finale è uno stato accettante
+\end{itemize}
+
+Data una grammatica regolare $G$, un automa non deterministico a stati finiti appropriato, accetta l'intero linguaggio generato da $G$.
+
+\textbf{Un automa di questo tipo accetta solo linguaggi generati da grammatiche regolari}
+
+Un linguaggio è regolare se e solo se esiste un automa non deterministico che accetta tutte le stringhe di quel linguaggio.
+
+L'intersezione tra linguaggi regolare è regolare. Inoltre l'automa prodotto da questa intersezione è l'automa definito dall'unione dell'input $I_1, I_2$
+
+Possono esistere più di $2^n$ stati.
+
+\section{Da automi non deterministici a automi deterministici}
+
+Per convertire un automa a stati finiti non deterministici ad un automa a stati finiti deterministici seguiamo la seguente tabella:
+
+
+$$
+\begin{tabular}{||c | c||} 
+	\hline
+	Non deterministico & Deterministico  \\ [0.5ex] 
+	\hline
+	Simboli in input & Simboli in input \\
+	\hline
+	Stati & Insieme potenza di tutti gli stati \\
+	\hline
+	Stato iniziale & Stato iniziale \\
+	\hline
+	Funzione di transizione & $\bigcup_{S \in X} f(S,x) = Y$ \\
+	\hline
+	Stati accettanti & Insieme potenza degli stati accettanti \\ [1ex] 
+	\hline
+\end{tabular}
+$$
+
+\end{document}

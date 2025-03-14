@@ -1,0 +1,97 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+\title{Combinazioni lineari}
+\author{Andrea Canale}
+
+\begin{document}
+	
+\maketitle
+\tableofcontents
+\section{Combinazioni lineari}
+
+Dato una spazio vettoriale $V$ e siano $v_1, ..., v_n$ vettori in $V$, una combinazione lineare di questi vettori è un vettore di forma:
+
+$$v\ =\ \lambda_1v_1+\lambda_2v_2\ +...+\lambda_nv_n$$
+
+Dove $\lambda_1, ..., \lambda_n \in \mathbb{K}$
+
+Esempio
+
+$$v\ =\ \lambda_1\left(\begin{matrix}1\\0\\0\\\end{matrix}\right)\ +\ \lambda_2\left(\begin{matrix}0\\1\\0\\\end{matrix}\right)\ =\ \left(\begin{matrix}\lambda_1\\0\\0\\\end{matrix}\right)\ +\ \left(\begin{matrix}0\\\lambda_2\\0\\\end{matrix}\right)\ =\left(\begin{matrix}\lambda_1\\\lambda_2\\0\\\end{matrix}\right)$$
+
+\section{Sottospazio generato}
+
+Dato uno spazio vettoriale $V$ in $\mathbb{K}$ e siano $v_1, ..., v_n$ vettori in $V$.
+
+Il sottospazio generato da questi vettori è un sottoinsieme di $V$ formato da tutte le combinazioni lineari di questi vettori. Viene indicato come $$Span\left(v_1,\ ...,\ v_k\right)\ =\ \left\{\lambda_1v_1,\ ...,\ \lambda_kv_k\ |\lambda_1,\ ...,\ \lambda_k\ \in\mathbb{K}\right\}$$
+
+\section{Indipendenza lineare}
+
+Dato uno spazio vettoriale $V$ su $\mathbb{K}$ e siano $v_1, ..., v_n$ vettori in questo spazio.
+
+I vettori si dicono \textbf{linearmente dipendenti} se esistono $\lambda_1, ..., \lambda_n$ con almeno un $\lambda \neq 0$ se
+$$\lambda_1v_1,\ ...,\ \lambda_kv_k\ =\ 0$$
+
+Questo vuol dire che i vettori si possono scrivere come combinazione lineare tra loro.
+
+In caso contrario i vettori si dicono \textbf{linearmente indipendenti}
+
+Per capire se i vettori sono linearmente indipendenti dobbiamo risolvere un sistema per trovare i coefficienti.
+
+Questo si può fare facilmente utilizzando il teorema di Rouchè-Capelli:
+
+\begin{itemize}
+	\item Se abbiamo $\infty$ soluzioni, i vettori dipendenti
+	\item Se abbiamo 1 soluzione, i vettori sono indipendenti perchè l'unica soluzione che esiste è sicuramente 0 perchè esiste sempre
+\end{itemize}
+
+Esempio
+
+$$w_1\ =\ \left(\begin{matrix}1\\1\\2\\\end{matrix}\right),\ w_2\ =\ \left(\begin{matrix}1\\2\\1\\\end{matrix}\right),\ w_3\ \left(\begin{matrix}3\\2\\1\\\end{matrix}\right)=$$
+
+$$ \lambda_1\left(\begin{matrix}1\\1\\2\\\end{matrix}\right)\ +\ \lambda_2\left(\begin{matrix}1\\2\\1\\\end{matrix}\right)\ +\ \lambda_3\left(\begin{matrix}3\\2\\1\\\end{matrix}\right)\ =\ \left(\begin{matrix}0\\0\\0\\\end{matrix}\right)\ = $$
+
+$$ \left(\begin{matrix}\lambda_1\ +\ \lambda_2\ +\ 3\lambda_3\\\lambda_1\ +\ 2\lambda_2\ +\ \lambda_3\\2\lambda_1\ +\ \lambda_2\ +\ \lambda_3\\\end{matrix}\right)\ =\ \left(\begin{matrix}0\\0\\0\\\end{matrix}\right)\ = $$
+
+E possiamo formare il seguente sistema in forma matriciale:
+
+$$ \begin{pmatrix}
+	1 & 1 & 3 & 0 \\
+	1 & 2 & 1 & 0 \\
+	2 & 1 & 1 & 0 
+\end{pmatrix}  $$
+
+% TODO: Calcolare il determinante
+
+\section{Basi e dimensioni}
+
+Data una sequenza di vettori $v_1, ..., v_n$ in V, essi formano una base se vengono soddisfatte due condizioni:
+
+\begin{itemize}
+	\item Questi vettori sono linearmente indipendenti
+	\item $Span(v_1, ..., v_n) = V$ Cioè che il rango della matrice del sistema omogeneo associato con i vettori dello Span sia uguale alla dimensione di V
+\end{itemize}
+
+La dimensione di V, definita come $dimV$ è il numero di elementi nella base di V.
+
+Due basi di uno stesso spazio hanno la stessa dimensione.
+\subsection{Base canonica}
+
+Dati vettori canonici(vettori con un unico 1 e nelle altre posizione 0), formati da $$e_1\ =\ \left(\begin{matrix}1\\\vdots\\0\\\end{matrix}\right),\ e_2\ =\ \left(\begin{matrix}0\\\vdots\\0\\\end{matrix}\right),\ e_2\ =\ \left(\begin{matrix}0\\\vdots\\1\\\end{matrix}\right) $$
+
+Questi vettori canonici formano una base nello spazio $\mathbb{K}^n$ chiamata base canonica.
+
+Infatti i vettori canonici formano lo spazio $\mathbb{K}^n$ 
+\end{document}

@@ -1,0 +1,216 @@
+\documentclass{article}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage[paperheight=40cm,paperwidth=16cm,textwidth=14cm]{geometry}
+% Load the setspace package
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\doublespacing
+\usepackage{setspace} 
+\title{Proposizioni}
+\author{Andrea Canale}
+
+\begin{document}
+	
+\section{Proposizioni}
+
+Le proposizioni sono frasi di cui possiamo chiederci se è vera o falsa.
+
+La logica studia le proposizioni in generale.
+
+Le proposizioni sono indicate come lettere, ad esempio: A, B, p, q, ...
+
+\section{Connettivi logici}
+
+I connettivi logici sono dei simboli che ci servono per creare nuove proposizioni e sono:
+
+\begin{itemize}
+	\item $ \neg $ Negazione
+	\item $ \land $ Congiunzione
+	\item $ \lor $ Disgiunzione
+	\item $ \rightarrow $ Implicazione
+	\item $ <-> $ Equivalenza
+\end{itemize}
+
+\section{Tavole di verità}
+
+Introduciamo la notazione di tavole di verità, ossia tabelle con $ 2^n $ righe, dove $n$ è il numero di proposizioni da verificare. Nella tavole di verità, scriveremo tutte le combinazioni di valori di verità che si possono creare date le proposizioni in modo da rendere più facile la creazione di proposizioni composte.
+
+\subsection{Negazione}
+
+La negazione si può leggere come negazione di una proposizione e ha questa tavola di verità:
+
+\[
+\begin{array}{|c|c|}
+	\hline
+	P & \neg P \\
+	\hline
+	V & F \\
+	F & V \\
+	\hline
+\end{array}
+\]
+
+\subsection{Congiunzione}
+
+La congiunzione unisce due proposizione ed è vera, solo se le due proposizioni sono vere. Ha la seguente tavola di verità:
+
+\[
+\begin{array}{|c|c|c|}
+	\hline
+	P & Q & P \land Q \\
+	\hline
+	V & V & V \\
+	V & F & F \\
+	F & V & F \\
+	F & F & F \\
+	\hline
+\end{array}
+\]
+
+\subsection{Disgiunzione}
+
+La disgiunzione unisce due proposizione e per essere vera, basta che solo una delle due proposizioni sia vera. Ha la seguente tavola di verità:
+
+\[
+\begin{array}{|c|c|c|}
+	\hline
+	P & Q & P \lor Q \\
+	\hline
+	V & V & V \\
+	V & F & V \\
+	F & V & V \\
+	F & F & F \\
+	\hline
+\end{array}
+\]
+
+\subsection{Implicazione}
+
+L'implicazione si può leggere come "Se A, allora B" ed è falsa solo se P è vera e Q è falsa. Ha la seguente tavola di verità:
+
+\[
+\begin{array}{|c|c|c|}
+	\hline
+	P & Q & P \rightarrow Q \\
+	\hline
+	V & V & V \\
+	F & V & V \\
+	F & F & V \\
+	V & F & F \\
+	\hline
+\end{array}
+\]
+
+P è \textbf{l'antecedente} e Q è \textbf{il conseguente}.
+
+\subsubsection{Condizione necessaria}
+
+La condizione necessaria e una condizione che è necessaria per rendere vera una proposizione.
+
+Esempio: Se la squadra vincerà il mondiale, allora riceveranno un premio.
+
+La condizione necessaria è vincere il mondiale.
+
+Se la squadra non vincerà il mondiale, allora sicuramente non riceverà un premio.
+
+\subsubsection{Condizione sufficiente}
+
+La condizione sufficiente è una condizione che è sufficiente per garantire di aver raggiunto una conclusione.
+
+Esempio: Se Maria andrà alla Mole Antoneliana, allora Maria visiterà Torino.
+
+Per essere sicuri che Maria visiti Torino basta che Maria vadà alla Mole, anche se potrebbe visitare Torino senza vedere la Mole.
+
+\subsubsection{Contrapposta}
+
+La contrapposta di un'implicazione, è il negato dell'implicazione. Nel caso di $ p \rightarrow q $ è 
+$$ \neg q \rightarrow \neg p $$
+
+% Da tradurre
+\textbf{Notice the diference between the contrapositive and the converse. The converse of
+	a conditional proposition merely reverses the roles of p and q, whereas the contrapositive
+	reverses the roles of p and q and negates each of them.}
+	
+\subsection{Equivalenza}
+
+L'equivalenza si può leggere come "A, se e solo se B" ed è vera solo se A e B sono entrambe vere o false. Ha la seguente tavola di verità:
+
+\[
+\begin{array}{|c|c|c|}
+	\hline
+	P & Q & P \leftrightarrow Q \\
+	\hline
+	V & V & V \\
+	V & F & F \\
+	F & V & F \\
+	F & F & V \\
+	\hline
+\end{array}
+\]
+
+\subsection{XOR}
+
+Lo XOR(OR esclusivo) non è direttamente un connettivo logico ma è molto usato in informatica. è descritto dalla formula: $ \neg P \land \neg q $. è vero solo se A o B sono vere ma non contemporaneamente.
+
+Ha la seguente tavola della verità:
+
+\[
+\begin{array}{|c|c|c|}
+	\hline
+	P & Q & P \oplus Q \\
+	\hline
+	V & V & F \\
+	V & F & V \\
+	F & V & V \\
+	F & F & F \\
+	\hline
+\end{array}
+\]
+
+%\section{Conversa di una proposizione}
+
+%Una proposizione ha sempre una conversa, ossia la sua negazione. Ad esempio con $ p \rightarrow q $, la sua conversa è $ q \rightarrow p $
+
+\section{Funzioni proposizionali}
+
+Una funzione proposizionale, è una proposizione che cambia il proprio valore di verità sulla base di una variabile x.
+
+Ad esempio: $A(x) \equiv x < 4 $
+
+\subsection{Dominio di discorso}
+
+La variabile x è definita in quello che viene detto "dominio di discorso" cioè l'insieme dove l'elemento esiste.
+
+Ad esempio, $A(x) \equiv x < 4 $, sarà sempre vera se l'insieme è definito come $ \{x | x > 4\} $
+
+Se prendiamo i numeri naturali avremo valori di verità diversi.
+
+\section{Formule proposizionali}
+
+Dato un insieme di proposizioni atomiche(A, B, ...) e un insieme di connettivi logici. Le formule proposizionali sono definite attraverso due assiomi:
+
+\begin{itemize}
+	\item Ogni lettere proposizionale è una funzione
+	\item Se A e B sono formule proposizionali\begin{itemize}
+		\item $ \neg A $ è una formula
+		\item $ A \land B $ è una formula
+		\item $ A \lor B $ è una formula
+		\item $ A \rightarrow B $ è una formula
+		\item $ A <-> B $ è una formula
+	\end{itemize}
+\end{itemize}
+
+\textbf{Nient'altro è una formula}
+
+\section{Equivalenza logica}
+
+Se due proposizioni P e Q, a parità di argomenti(proposizioni), hanno lo stesso valore, diciamo che queste due proposizioni sono logicamente equivalenti.
+
+\end{document}

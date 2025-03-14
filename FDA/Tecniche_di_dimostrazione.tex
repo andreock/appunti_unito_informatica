@@ -1,0 +1,165 @@
+\documentclass[a4paper]{article}
+\usepackage{geometry}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\doublespacing
+\usepackage[overload]{empheq} % for Solution 2
+% Choose a conveniently small page size
+% Load the setspace package
+% Using \doublespacing in the preamble
+% changes text to double line spacing
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=C,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+
+\title{Tecniche di dimostrazione}
+\author{Andrea Canale}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Dimostrazione diretta}
+La dimostrazione diretta si avvale di calcoli o fatti che dimostrino una determinata proprietà.
+
+Quando usiamo le regole di inferenza(ad esempio per dimostrare una conseguenza logica), può essere rappresentata dal seguente schema: 
+
+\[
+\begin{array}{ r l }
+	& p_1 \\
+	& p_2 \\
+	& \vdots \\
+	& p_n \\
+	\cline{2-2}
+	\therefore & q
+\end{array}
+\]
+
+Dove $p_1, p_2, ...$ sono le assunzione e q la conclusione logica.
+
+\section{Dimostrazione per assurdo}
+
+La dimostrazione per assurdo cerca di trovare un caso dove la proposizione sia falsa in modo da dimostrare che una conseguenza logica non sia vera.
+
+La dimostrazione per assurdo cerca di trovare una conclusione della forma $ C \land \neg C$
+
+\section{Dimostrazione per contrapposizione}
+
+La dimostrazione per contrapposizione serve a verificare proposizioni usando la forma 
+
+$\neg B \rightarrow \neg A$
+
+\section{Dimostrazione per casi}
+
+La dimostrazione per casi viene usata quando la proposizione ammette diversi casi che devono essere tutti veri perchè la proposizione sia vera.
+
+$$(A_1 \rightarrow B) \land ... \land (A_n \rightarrow B)$$
+
+Ogni caso può essere dimostrato con una tecnica di dimostrazione a scelta.
+
+\section{Dimostrazione per induzione}
+
+La tecnica dell'induzione serve per dimostrare proprietà che valgono per tutti i numeri naturali.
+
+Viene usata quando la proposizione ha una forma del tipo:
+
+\begin{alignat*}{4}[left = \empheqlbrace]
+	f(0) & =n \\
+	f(n) & = n \cdot f(n-1)
+\end{alignat*}
+
+Quindi abbiamo due casi: \begin{itemize}
+	\item Il caso base $f(0)$ dove 0 è il valore iniziale(può essere anche $\neq 0$)
+	\item Il caso generale che si riconduce ad un certo punto al caso base
+\end{itemize}
+
+Il principio d'induzione si compone in 3 passi:
+
+\begin{itemize}
+	\item Dimostrazione del caso base, dove per dimostrazione diretta dimostriamo il caso base
+	\item Passo induttivo, quando assumiamo che $f(n)$ sia vera
+	\item Dimostrazione del caso generale, dimostrando per dimostrazione diretta $f(n+1)$ usando l'assunzione del passo induttivo
+\end{itemize}
+
+\subsection{Invariante}
+
+L'invariante di un ciclo iterativo sfrutta la proprietà dell'induzione sul numero di volte che un ciclo viene eseguito per dimostrare che dopo $k$ iterazioni vale una certa proprietà.
+
+Ad esempio:
+
+\begin{lstlisting}
+	int x = 0;
+	int y = 0;
+	while(x < n){
+		x = x + 1;
+		y = x * y;
+	}
+\end{lstlisting}
+
+Questo codice è invariante e rappresenta $y=x!$
+
+Per dimostrarlo usiamo l'induzione sul numero di volte cheA un ciclo viene eseguito, indicato come $k$.
+
+Abbiamo 3 passi fondamentali:
+
+\begin{itemize}
+	\item Caso base, dimostriamo che per k = 0, la proprietà vale. 
+	\item Passo induttivo, assumiamo che p(k) vale
+	\item Caso generale, dimostriamo che p(k+1) vale 
+\end{itemize}
+
+Questa proprietà dell'invariante è utile per controllare la correttezza del codice.
+
+\subsection{Induzione forte}
+
+L'induzione forte viene usata quando vogliamo dimostrare che tutti i casi precedenti al passo induttivo sono validi e non solo al caso base.
+
+Se vogliamo dimostrare una proprietà $S(n)$ dove il dominio di discorso sono i numeri naturali maggiori o uguali a $n_0$, possiamo
+
+\begin{itemize}
+	\item Dimostrare $S(n_0)$
+	\item Nel passo induttivo assumiamo che $S(k)$ sia vera dove $n_0 \leq k < n$
+	\item Dimostriamo che $S(n)$ è vera dove $n > n_0$
+\end{itemize}
+
+Concludiamo che $S(n)$ è vera per ogni $n > n_0$
+
+\subsection{Principio del minimo/Principio del buon ordinamento}
+
+Il principio di buon ordinamento impone che in ogni insieme non vuoto di numeri naturali esiste sempre un elemento minimo.
+
+Da ciò ne ricaviamo che se la proprietà P è vera per qualche numero naturale, allora c’è un minimo numero naturale n tale che P(n).
+
+\textbf{L'induzione forte e il principio del minimo sono equivalenti al principio d'induzione}
+\end{document}

@@ -1,0 +1,196 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+
+
+\title{Permutazioni}
+\author{Andrea Canale}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+
+\section{Permutazioni}
+
+Dato un insieme A, la sua permutazione è una funzione biettiva che cambia l'ordine degli elementi all'interno dell'insieme.
+
+L'insieme delle permutazioni su n elementi è denotato come:
+
+$$S_n=\{\text{permutazioni su S}\}$$
+
+Dove $S$ è l'insieme che prende tutti i numeri da 0 a $n$.
+
+\subsection{Rappresentare permutazioni}
+
+Per rappresentare le funzioni usiamo una notazione matriciale di questo tipo:
+
+$$ \begin{pmatrix}
+	1 & 2 & 3 \\
+	1 & 3 & 2 
+\end{pmatrix}  $$
+
+Dove nella prima riga abbiamo l'insieme originale e nella seconda riga la sua permutazione.
+
+\section{Composizione di permutazioni}
+
+L'insieme delle permutazioni $S_n$ ha un operazione di composizione definita come la composizione di funzioni, in quanto la permutazione è una funzione. 
+
+$$\sigma \cdot \tau = a \rightarrow \sigma(\tau(a))$$
+
+\subsection{Proprietà della composizione}
+
+\begin{itemize}
+	\item è associativa: $o	\sigma\ o\ \left(\tau\ o\ \nu\right)\ =\ \left(\sigma\ o\ \tau\right)o\ \nu$
+	\item Ha un elemento neutro tale che $\sigma \cdot id = \sigma$
+	\item Esiste un inverso(in quanto le permutazioni sono biettive) tale che $b \cdot b^{-1} = b^{-1} \cdot b = 1$
+	\item Non vale la proprietà commutativa(come nella composizione di funzioni)
+\end{itemize}
+
+Le permutazioni formano un gruppo non commutativo.
+
+\section{Permutazioni inverse}
+
+Data la permutazione $$\sigma=\left(\begin{matrix}1\ &\ 2\ &\ 3\ &\ 4\ &\ 5\ \\3\ &\ 1\ &\ 4\ &\ 2\ &\ 5\ \\\end{matrix}\right)$$
+Il suo inverso sarà:
+
+$$\sigma^{-1}=\ \left(\begin{matrix}1\ &\ 2\ &\ 3\ &\ 4\ &\ 5\ \\2\ &\ 4\ &\ 1\ &\ 3\ &\ 5\ \\\end{matrix}\right)
+$$
+
+Da questo ne deduciamo che per calcolare l'inverso di una permutazione basta invertire le righe della permutazione di partenza e riordinarle.
+
+\section{Cicli}
+
+Una permutazione viene chiamata cicli se le immagini e le controimmagini della permutazioni combaciano. Cioè quanto ha una struttura del tipo:
+
+$$\left(\begin{matrix}1\ &\ 2\ &\ i_1\ &\ k\ &\ i_2\ &\ n\ \\1\ &\ 2\ &\ i_2\ &\ k\ &\ i_1\ &\ n\ \\\end{matrix}\right)
+$$
+
+Ad esempio in $S_9$:
+
+$$\sigma=\ \left(\begin{matrix}1\ &\ 2\ &\ 3\ &\ 4\ &\ 5\ &\ 6\ &\ 7\ & 8\ & 9\
+	 \\1\ &\ 5\ &\ 7\ &\ 8\ &\ 3\ &\ 6\ &\ 4\ & 2\ & 9\ \\\end{matrix}\right)$$
+	 
+\subsection{Inverso di un ciclo}
+
+L'inverso di un ciclo è il ciclo letto da destra verso sinistra. Ad esempio:
+
+$\sigma=\left(3\ 5\ 2\right)$ diventa $\sigma^{-1}=\left(2\ 5\ 3\right)$
+
+\section{Cicli disgiunti}
+
+Due cicli sono disgiunti se la loro intersezione forma un insieme vuoto, o più semplicemente non hanno elementi in comune.
+
+\subsection{Prodotto di cicli disgiunti}
+
+La composizione di cicli disgiunti commuta.
+
+Ogni permutazione diversa dall'identità può essere scritta come composizione di cicli disgiunti.
+
+Esempio:
+
+$$\left(\begin{matrix}1\ &\ 2\ &\ 3\ &\ 4\ &\ 5\ &\ 6\ &\ 7\ &\ 8\ &\ 9\ \\4\ &\ 5\ &\ 1\ &\ 6\ &\ 2\ &\ 3\ &\ 9\ &\ 8\ &\ 7\ \\\end{matrix}\right)\ 
+$$ 
+Può essere scritta come $\left(1\ 4\ 6\ 3\right)\ \left(2\ 5\right)\ \left(7\ 9\right)$
+
+Da questo ne deduciamo che per scrivere una composizione come prodotto di cicli disgiunti "percorriamo" tutta la permutazione e quando troviamo che un elemento manda al primo chiudiamo il ciclo e riprendiamo il procedimento dal primo numero che manca.
+
+\subsection{Tipo di una composizione di cicli disgiunti}
+
+Data una composizione di k cicli disgiunti, il suo tipo è la k-upla che contiene la lunghezza di ogni cicli.
+
+Esempio:
+
+$\left(1\ 3\ 4\ 7\right)\ \left(2\ 5\right)$ ha tipo $(4, 2)$ oppure $(2, 4)\text{(forse)}$
+
+\section{Prodotto di scambi}
+
+Ogni permutazione si può scrivere come composizione di scambi. Questo deriva dal fatto che ogni ciclo di lunghezza l è composizione di l-1 composizioni.
+
+Esempio:
+
+$$c=\left(2\ 3\ 1\ 5\ 4\right)=\left(2\ 4\right)\left(2\ 5\right)\left(2\ 1\right)\left(2\ 3\right)$$
+
+Inoltre questa scrittura non è univoca perchè aggiungendo un'identità, ad esempio $(2\ 3)$ otteniamo lo stesso risultato.
+
+Notiamo che le trasposizioni che intervengono non sono disgiunte e questo comporta che la commutatività non vale.
+
+Questa notazione viene usata per risparmiare spazio, infatti le permutazioni di $S_n$ sono $n!$ mentre il prodotto di scambi è $ \begin{pmatrix}
+	n \\
+	2 
+\end{pmatrix}  $
+
+\section{Parità di permutazioni}
+
+Le permutazioni sono classificate in base al numero di scambi che la compongono.
+
+\begin{itemize}
+	\item Le permutazioni pari si scrivono con un numero pari di trasposizioni
+	\item Le permutazioni dispari si scrivono con un numero dispari di disposizioni
+\end{itemize}
+
+La cardinalità dell'insieme delle permutazioni pari e dispari è $\frac{n!}{2}$
+
+\subsection{Parità di cicli}
+
+\begin{itemize}
+	\item Un l-ciclo è pari se l è dispari
+	\item Un l-ciclo è dispari se l è pari
+\end{itemize}
+
+Questo viene dal teorema precedente dove imponevamo che un ciclo si può scrivere come prodotto di l-1 trasposizioni.
+
+\subsection{Parità di una composizione di cicli disgiunti}
+
+La parità di una composizione di cicli disgiunti è data dalla somma di tutte le lunghezze dei singoli cicli. Se questa somma è pari allora la permutazione è pari, altrimenti è dispari.
+
+\section{Periodo di una permutazione}
+
+Data una permutazione $\sigma$, il periodo è il minimo numero intero $n > 0$ tale che $\sigma^n=(1)$
+
+Questo numero è scritto come $per(\sigma)$
+
+\subsection{Periodi noti}
+
+\subsubsection{Periodo di un k-ciclo}
+
+Il periodo di un k-ciclo è k.
+
+\subsubsection{Periodo di una trasposizione}
+
+Il periodo di una trasposizione è sempre uguale al numero di componenti che la compongono.
+
+Ad esempio $per((1\ 2)) = 2$
+
+\subsubsection{Periodo di un prodotto di cicli disgiunti}
+
+Il periodo di un prodotto di cicli disgiunti è dato dal minimo comune multiplo delle lunghezze dei cicli.
+
+Ad esempio: $\sigma$ ha tipo $(l_1\ ... \ l_k)$ allora $per(\sigma) = mcm(l_1\ ... \ l_k)$
+
+\subsubsection{Periodo di una composizione di trasposizioni}
+
+Questo non si può calcolare direttamente ma bisogna sempre riscrivere la composizione come prodotto di cicli disgiunti.
+
+\subsection{Calcolo di potenze n-esime}
+
+Data una permutazione $\sigma$, se vogliamo calcolare $\sigma^n$ possiamo procedere seguendo questi passi:
+
+\begin{itemize}
+	\item Trovare $per(\sigma) = p$
+	\item Calcolare $\frac{n}{p}$(compreso il resto $r$)
+	\item Scrivere $\sigma^n = \sigma^{q \cdot p + r} = (\sigma^p)^q \cdot \sigma^r$
+	\item Ora possiamo semplificare $(\sigma^p)^q$ perchè sappiamo che è uguale all'identità $(1)$
+	\item Calcoliamo solo $\sigma^r$
+\end{itemize}
+\end{document}

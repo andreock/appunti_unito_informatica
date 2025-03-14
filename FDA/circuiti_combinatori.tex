@@ -1,0 +1,209 @@
+\documentclass[a4paper]{article}
+\usepackage{geometry}
+
+\usepackage{graphicx}
+\graphicspath{ {./circuiti/} }
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\doublespacing
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=C,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+
+\title{Circuiti combinatori}
+\author{Andrea Canale}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+
+\section{Porte logiche}
+
+% TODO: mettere foto porte logiche
+\section{Algebre di Boole}
+
+Dato un insieme S contenente elementi distinti 0 e 1 e due operazioni binarie $+$ e $\cdot $, questo insieme è un algebra di Boole se valgono le seguenti proprietà:
+
+\begin{itemize}
+	\item Associatività: $(x+y)+z=x+(y+z)$ e $(x \cdot y) \cdot z=x \cdot (y \cdot z)$
+	\item Commutatività: $x+y=y+x$ e $x \cdot y = y \cdot x$
+	\item Distributività: $x \cdot (y+z) = (x \cdot y) + (x \cdot z)$ e $ x + (y \cdot z) = (x+y) \cdot (x+z)$ e $x + (y \cdot z) = (x + y) \cdot (x + z)$
+	\item Esistenza di elementi neutri: $x+0=x$ e $x \cdot 1 = x$
+	\item Esistenza di un inverso: $x+x^{'} = 1$ e $x \cdot x^{'} = 0$
+\end{itemize}
+
+L'inverso in un algebra di Boole è univoco tale che:
+
+$$ x+y = 1 \text{ e } xy=0 \text{ allora } y=x^{'}$$
+
+Inoltre soddisfa altre 6 proprietà:
+
+\begin{itemize}
+	\item Idempotenza: $x+x=x$ e $xx=x$
+	\item Legge del limite/dominanza: $x+1=1$ e $x \cdot 0 = 0$
+	\item Legge di assorbimento: $x+xy=x$ e $x(x+y) = x$
+	\item Legge d'involuzione: $(x^{'})^{'} = x$
+	\item Legge 0 e 1: $0^{'} = 1$ e $1^{'} = 0$
+	\item Leggi di De Morgan per le algebre di Boole: $(x+y)^{'} = x^{'} \cdot y^{'}$ e $(xy)^{'} = x^{'} + y^{'}$
+\end{itemize}
+
+\section{Dualità}
+
+Il duale di un espressione booleana è l'espressione ottenuta invertendo tutte le operazioni che incontriamo:
+Rimpiazziamo 0 con 1 e 1 con 0 e Rimpiazziamo + con $\cdot$ e $\cdot$ con $+$
+
+Notiamo che il duale di un teorema su un algebra di Boole è sempre un teorema.
+
+\section{Funzioni booleane}
+
+Una funzione booleana è una funzione di n argomenti su un algebra di Boole. è una funzione della forma:
+
+$$f(x_1, ..., x_n) = X(x_1, ..., x_n)$$
+
+Ad esempio: $f(x_1, x_2) = x_1 \land \overline{x_2}$
+
+\subsection{Ricavare funzioni da tavole di verità}
+
+Partendo da una tavola della verità del tipo: 
+$$
+	\begin{array}{|c c c|c|}
+		x_1 & x_2 & x_3 & f(x_1, x_2, x_3)\\
+		\hline
+		1 & 1 & 1 & 1\\
+		1 & 1 & 0 & 0\\
+		1 & 0 & 1 & 0\\
+		1 & 0 & 0& 1\\
+		0 & 1 & 1 & 0\\
+		0 & 1 & 0 & 1\\
+		0 & 0 & 1 & 0\\
+		0 & 0 & 0 & 0\\
+	\end{array}
+$$
+
+Procediamo così:
+
+\begin{itemize}
+	\item Scriviamo le formule che danno come output 1. Queste formule sono dette mintermini
+	\item Disgiungiamole tra di loro
+\end{itemize}
+
+In questo caso abbiamo:
+\begin{itemize}
+	\item $x_1 x_2 x_3$
+	\item $x_1 \overline{x_2} \overline{x_3}$
+	\item $\overline{x_1} x_2 \overline{x_3}$
+\end{itemize}
+
+Otteniamo che la seguente tavola di verità si ottiene dalla funzione: $$f(x_1, x_2, x_3) = (x_1 x_2 x_3) \lor (x_1 \overline{x_2} \overline{x_3}) \lor \overline{x_1} x_2 \overline{x_3}$$
+
+Questa forma per una funzione booleana è dette \textbf{forma disgiuntiva normale}.
+
+\section{Porte funzionalmente complete}
+
+Qualsiasi funzione booleana si può scrivere come risultato di combinazioni di $\{AND, OR, NOT\}$. Ne deduciamo che queste porte sono funzionalmente complete.
+
+In particolare $\{AND, NOT\}$ e $\{OR, NOT\}$ sono funzionalmente complete.
+
+Anche la porta NAND è funzionalmente completa.
+
+\section{Semplificazione di circuiti combinatori}
+
+Possiamo semplificare circuiti combinatori attraverso le leggi di Quine-McCluskey:
+
+\begin{itemize}
+	\item $Ea \lor E\overline{a} = E(a \lor \overline{a} = E1 = E$
+	\item $E=E\lor Ea$
+\end{itemize}
+
+Dove E è una condizione booleana. Queste regole valgono per qualsiasi algebra di boole
+
+\section{Esempi di circuiti combinatori}
+
+\subsection{Half-Adder}
+
+\includegraphics[scale=0.6]{half_adder}
+
+Un half-adder somma i due ingressi $x,y$ e dà il risultato in uscita su $s$ e l'eventuale riporto in $c$.
+
+$$
+\begin{array}{|c c |c|c|}
+	x & y & c & s\\
+	\hline
+	1 & 1 & 1 & 0\\
+	1 & 0 & 0 & 1\\
+	0 & 1 & 0 & 1\\
+	0 & 0 & 0& 0\\
+\end{array}
+$$
+
+\subsection{Full-Adder}
+
+Un full-adder combina vari half-adder per fare somme a 3 o più bit.
+
+\includegraphics[scale=0.6]{full_adder}
+
+\subsection{Decoder}
+
+Prende in ingresso n bit e attiva l'uscita sulla base dei bit in ingresso convertiti in numero decimale:
+
+\includegraphics[scale=0.6]{decoder}
+
+Ad esempio se in input c'è il numero 4, cioè 100 verrà attivata l'uscita 4.
+
+\subsection{Multiplexer}
+
+\includegraphics[scale=0.6]{multiplexer}
+
+Un multiplexer seleziona quale degli n ingressi viene mandato all'uscita attraverso uno o più ingressi di controllo $s$
+
+Ad esempio se i bit di controllo formano $11$, verrà mandato in output l'ingresso 3.
+
+\subsection{Demultiplexer}
+
+\includegraphics[scale=0.6]{demultiplexer}
+
+\subsection{ALU ad 1 bit}
+
+\includegraphics[scale=0.4]{alu_ad_1_bit}
+
+Un multiplexer attiva il circuito corrispondente all'operazione da eseguire, l'ingresso carryin permette di eseguire somme in complemento a due(sottrazioni) e dà in uscita un carryout in caso di riporto.
+
+Il risultato viene fatto uscire nell'output result.
+
+Per formare ALU a più bit, concateniamo questi circuiti.
+
+Per eseguire le somme dobbiamo invertire B per renderlo negativo:
+
+\includegraphics[scale=0.4]{alu_binvert}
+
+Usando la sottrazione possiamo anche implementare l'operazione $<$ in quanto se faccio $(a-b)$, verifico il bit più significativo, se è 1 vuol dire che la differenza è negativa e quindi $a < b$
+
+
+\end{document}

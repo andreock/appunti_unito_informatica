@@ -1,0 +1,113 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+\title{Funzioni}
+\author{Andrea Canale}
+
+\begin{document}
+	
+\maketitle
+\begin{spacing}{2.3}
+	\tableofcontents
+\end{spacing}
+\section{Funzioni}
+Una funzione con dominio A e codominio B è il sottoinsieme tra A e B ed è chiamato grafico della funzione:
+
+$$ \Gamma \underline{\subset} AxB $$
+
+Per definire una funzione usiamo la notazione: $ f:A \rightarrow B $
+
+\section{Funzione ben definita}
+
+Per verificare che una funzione $ f:A \rightarrow B $ sia ben definita dobbiamo controllare 2 cose:
+
+\begin{itemize}
+	\item La funzione sia \textbf{ben definita}, ossia che ogni elemento di A ha una sola immagine in B
+	\item La funzione sia \textbf{funzionale}, ossia ogni elemento di A ha una sola immagine
+\end{itemize}
+
+\section{Immagine e controimmagine}
+
+Data la funzione $ f:A \rightarrow B $, possiamo trovare l'immagine associata ad un valore del dominio.
+
+\textbf{L'immagine} è quindi l'elemento associato nel codominio ad un elemento del dominio.
+
+\textbf{La controimmagine} invece ci permette di eseguire l'operazione inversa: dato un elemento del codominio, la controimmagine di un elemento del codominio, è l'elemento nel dominio che restituisce quel valore.
+
+L'immagine si può scrivere come $ f(a) = b $
+
+La controimmagine si può scrivere come: $ f^{-1}(b) = a $
+
+\section{Funzioni note}
+
+\subsection{Funzione identità}
+La funzione identità, è una funzione tale che $ id_A: A \rightarrow A $ e quindi quella funzione dove l'immagine e la controimmagine sono uguali. La funzione non modifica il suo argomento.
+
+\subsection{Costante}
+La funzione costante restituisce sempre lo stesso valore che identifichiamo con b.
+
+\subsection{Successione}
+Una successione di elementi in $ \mathbb{N} $ tale che $ s\left(0\right) = b_0, s\left(1\right) = b_1, s\left(2\right) = b_2... $
+
+\section{Classificazione di funzioni}
+
+\subsection{Funzioni suriettive}
+Una funzione viene detta suriettiva se ogni elemento di B ha una controimmagine in A
+
+\subsection{Funzioni iniettive}
+Una funzione viene detta iniettiva se per ogni elemento dell'insieme A, non si hanno mai due immagini uguali.
+
+$$ \forall a_1,a_2 \in A \text{ Allora } a_1 \neq a_2 $$
+
+\subsection{Funzioni biettiva}
+Una funzione viene detta biettiva se la funzione è sia suriettiva che iniettiva.
+
+\section{Funzioni composte}
+Possiamo anche definire una funzione che nasce dalla composizione di due o più funzioni. Ad esempio:
+Date $ f: A \rightarrow B $ e $ g: B \rightarrow C $
+
+$$ g \cdot f: A \rightarrow C $$
+
+Possiamo comporle solo se il codominio di f coincide con il dominio di g.
+
+Inoltre questa composizione deve essere ben definita.
+
+\subsection{Proprietà associativa}
+La composizione supporta la proprietà associativa, tale che:
+
+$$ g \cdot f: A \rightarrow A = f \cdot g: B \rightarrow B $$
+
+\textbf{La composizione non supporta la proprietà commutativa}
+
+\subsection{Composizione di funzioni suriettive, iniettive e biettive}
+
+\begin{itemize}
+	\item Se f e g sono suriettive, $ g \cdot f $ è suriettiva
+	\item Se f e g sono iniettive, allora $ g \cdot f $ è iniettiva
+	\item Se f e g sono biettiva, allora $ g \cdot f $ è biettiva
+\end{itemize}
+Se non conosciamo le funzioni di partenza:
+
+\begin{itemize}
+	\item Se $ g \cdot f $ è suriettiva, allora g è suriettiva
+	\item Se $ g \cdot f $ è iniettiva, allora f è iniettiva
+\end{itemize}
+
+\section{Funzioni invertibili}
+Una funzione è invertibile, se e solo se, $ f:A \rightarrow B $ è biettiva.
+
+L'inverso della funzione f è definito come: $ g \cdot f = id_A $ e $ f \cdot g = id_B $
+
+Quindi la funzione inversa, dato il codominio ci restituisce il dominio mentre dato il dominio ci restituisce il codominio.
+\end{document}

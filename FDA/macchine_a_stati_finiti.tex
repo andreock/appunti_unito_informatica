@@ -1,0 +1,66 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+\usepackage{graphicx}
+\graphicspath{ {./macchine_a_stati_finiti_imgs/} }
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+
+\title{Macchine a stati finiti}
+\author{Andrea Canale}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	
+\section{Macchine a stati finiti}
+
+Una macchina a stati finiti è un modello di macchina con memoria che ha i seguenti requisiti:
+
+\begin{itemize}
+	\item Un insieme finito di simboli $I$ in entrata
+	\item Un iniseme finito di simboli $O$ in uscita
+	\item Un insieme finito di stati $S$
+	\item Una funzione $f: S x I \rightarrow S$ per lo stato successivo
+	\item Una funzione $g: S x I \rightarrow O$ per l'output
+	\item Uno stato iniziale $\sigma$
+\end{itemize}
+
+$M=(I, O, S, f, g, \sigma)$
+
+Queste macchina seguono la funzione $f$ applicata alla stringa in input, cambiando lo stato della macchina, e poi la funzione $g$ in base all'ultimo stato dà la stringa in output
+
+\includegraphics{flip_flop}
+
+Notiamo che la freccia $\rightarrow$ indica lo stato iniziale. Abbiamo poi i due stati e tutte le sequenze in input che l'automa accetta. Alcune sequenze notiamo che garantiscono il cambio di stato.
+
+Le sequenze sono della forma bit in ingresso/bit in uscita
+
+\section{Automi a stati finiti}
+
+Un automa a stati finiti riconosce insiemi di parole su un alfabeto scelto precedentemente.
+
+Un automa a stati finito è una macchina a stati finiti che ha come insieme d'uscita $\{0, 1\}$ e l'output viene stabilito in base all'ultimo stato. Gli stati che danno output 1 sono detti di accettazione.
+
+\includegraphics{automi_a_stati_finiti}
+
+Gli stati d'accettazione sono cerchiati due volte. In questo caso non si scrive l'output sopra la freccia perchè si capisce dallo stato se è d'accettazione oppure no.
+
+Notiamo che può succedere che una sequenza non sia adatta per un automa. In questo caso l'automa non accetta quella sequenza. Questo accade se la sequenza e l'automa non lavorano sullo stesso alfabeto ad esempio.
+
+Inoltre una stringa si definisce accettata dall'automa se l'ultimo stato in cui termina è uno stato accettante.
+
+\textbf{Due automi $A$ e $A^{'}$ sono equivalenti se l'insieme di parole che accettano sono uguali $Ac(A) = Ac(A^{'})$}
+
+
+
+
+\end{document}

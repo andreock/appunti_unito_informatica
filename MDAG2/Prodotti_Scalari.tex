@@ -1,0 +1,204 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{geometry}
+
+\usepackage[table]{xcolor}
+\setlength{\parindent}{10pt}
+\usepackage{amsfonts}
+\usepackage{amsmath,amssymb}
+% Choose a conveniently small page size
+\usepackage{setspace}
+% Using \doublespacing in the preamble 
+% changes text to double line spacing
+\onehalfspacing
+\usepackage{listings}
+\usepackage{color}
+
+\title{Prodotti scalari}
+\author{Andrea Canale}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Prodotto scalare}
+
+Sia V uno spazio vettoriale, un prodotto scalare è una funzione lineare $V x V \rightarrow \mathbb{R}$ che soddisfa tre assiomi:
+
+\begin{itemize}
+	\item $<v+v',w> = <v,w> + <v', w>$
+	\item $<\lambda v, w> = \lambda <v,w>$
+	\item $<v,w> = <w,v>$
+\end{itemize}
+
+Queste proprietà valgono anche per $w$.
+
+Date queste proprietà concludiamo che il prodotto scalare è lineare sul primo e sul secondo fattore ed è quindi bilineare. Inoltre è simmetrico per la terza proprietà.
+
+Inoltre per qualsiasi prodotto scalare vale: $<0,0>=0$
+
+\section{Prodotto scalare definito positivo e degenere}
+
+Un prodotto scalare è definito positivo se $<v,v> > 0$ $\forall v \neq 0$
+
+Un prodotto scalare è degenere se esiste un $v \neq 0$ tale che $<v,w> = 0$ $\forall w \in V$
+
+\section{Prodotto scalare euclideo}
+
+Il prodotto scalare euclideo è un tipo di prodotto scalare noto definito come:
+
+$$<x,y> = {^t}X \cdot y$$
+
+Notiamo che il prodotto scalare è un prodotto scalare definito positivo.
+
+\section{Matrici simmetriche}
+
+Una matrice simmetrica S definisce un prodotto scalare su $\mathbb{R}^n$ definito come:
+
+$$g_s(x,y) = {^t}x \cdot S \cdot y$$
+
+Ciò può essere scritto come: 
+
+$$\sum_{i,j=1}^{n}x_i \cdot S_{ij} \cdot y_j$$
+
+Inoltre in base canonica vale: $g_s(e_i, e_j) = S_{ij}$
+
+\section{Matrice associata}
+
+Sia V uno spazio vettoriale, $g: V x V \rightarrow \mathbb{R}$ un prodotto scalare e $B=\{v_1, ..., v_n\}$ una base di V, la matrice associata al prodotto scalare $g$ nella base B è la matrice simmetrica $S$ definita come $$S_{ij} = g(v_1, v_j)$$
+
+Questa matrice è indicata come $[g]_b$
+
+% proposizione 19.15
+
+\section{Cambiamento di base}
+
+Sia V uno spazio vettoriale, $g: V x V \rightarrow \mathbb{R}$ un prodotto scalare, $B=\{v_1, ..., v_n\}$ e $B'=\{v'_1, ..., v'_n\}$ due basi di V.
+
+Esiste una matrice M tale che:
+
+$$B'={^t}M \cdot S \cdot M$$
+
+\section{Matrici congruenti}
+
+Due matrici $S$ e $S'$ sono congruenti se esiste una matrice $M$ invertibile tale che:
+
+$$S={^t}M \cdot S' \cdot M$$
+
+Notiamo che una matrice potrebbe essere non simile ma comunque congruente ad un altra. Inoltre il determinante di due matrici congruenti non deve essere uguale ma devono avere lo stesso segno.
+
+\section{Forme quadratiche}
+
+Un polinomio $p(x)$ nelle variabili $x_1, ..., x_n$ è omogeneo se tutti i suoi monomi hanno lo stesso grado.
+
+Ogni forma quadratica si scrive in modo univoco come
+
+$$q(x) = g_s(x,x)$$
+
+Per un opportuna matrice simmetrica $S$.
+
+Una forma quadrati viene anche denotata come $q_s(x)$.
+
+Inoltre è definita positiva se $g_s$ è definito positivo.
+
+\section{Norma}
+
+La norma di un prodotto scalare è definita come:
+
+$$||v|| = \sqrt{<v,v>} = \sqrt{g_s(x,x)} = \sqrt{q_s(x)}$$
+
+La norma è la lunghezza del vettore $v$
+
+Valgono 4 proprietà:
+
+\begin{itemize}
+	\item La norma è sempre un numero positivo
+	\item Vale $||\lambda v|| = |\lambda| \cdot ||v||$
+	\item $|<v,w>| \leq ||v|| \cdot ||w||$ Questa è detta disuguaglianza di Cauchy-Schwarz
+	\item $||v+w|| \leq ||v|| + ||w||$ Questa è la disuguaglianza triangolare
+\end{itemize}
+
+\section{Distanze}
+
+Siano $P,Q$ due vettori o punti dello spazio, il vettore che unisce $P$ a $Q$ è definito come:
+
+$$\vec{PQ} = Q - P$$
+
+La distanza tra $P$ e $Q$ è:
+
+$$d(P, Q) = ||\vec{PQ}|| = ||Q- P||$$
+
+Valgono 3 proprietà:
+
+\begin{itemize}
+	\item $d(P, Q) > 0 Se P \neq Q$
+	\item $d(P, Q) = d(Q, P)$
+	\item $d(P, Q) \leq d(P,S) + d(S,Q)$ Questa è la disuguaglianza triangolare
+\end{itemize}
+
+\section{Angoli}
+
+Sia V uno spazio vettoriale munito di prodotto scalare definito positivo e v,w due vettori in V, possiamo calcolare l'angolo tra questi due vettori. Quest'angolo è compreso nell'intervallo $[0, \pi]$ e ha un valore tale per cui:
+
+$$cos(\theta)=\frac{<v,w>}{||v|| \cdot ||w||}$$
+
+Per trovare il valore dell'angolo possiamo usare l'arc cos:
+
+$$\theta = arc cos(\frac{<v,w>}{||v|| \cdot ||w||})$$
+
+Un angolo può essere classificato in tre modi:
+
+\begin{itemize}
+	\item Acuto se $\theta < 90$°
+	\item Retto se $\theta = 90$°
+	\item Ottuso se $\theta > 90$°
+\end{itemize}
+
+\section{Vettori ortogonali}
+
+Due vettori sono ortogonali se $<v,w>=0$. Inoltre se sono ortogonali il loro angolo sarà retto.
+
+\section{Complemento ortogonale}
+
+Sia V uno spazio vettoriale con prodotto scalare. Prendiamo W, un sottospazio di V.
+
+Il complemento ortogonale di W, denotato come $W^\perp$ è definito come l'insieme dei vettori in V ortogonali a tutti i vettori in W:
+
+$$W^\perp = \{v \in V | <v,w>=0, \forall w \in W\}$$
+
+Notiamo che anche $W^\perp$ è un sottospazio vettoriale di V.
+
+Inoltre se il prodotto scalare è definito positivo, allora $W^\perp = \{0\}$
+
+\section{Proiezione ortogonale}
+
+Siano V uno spazio vettoriale munito di prodotto scalare definito positivo, $w \in V$ un vettore non nullo e $U=Span(w)$ la retta generata da $w$.
+
+Lo spazio $V$ può essere scritto come $V=U \oplus U^\perp$.
+
+Questa somma indica una proiezione $P_u: V \rightarrow U$ perchè ogni vettore in V si può scrivere come $v = u + u'$.
+
+Inoltre questa proiezione si può scrivere come:
+
+$$pr_u(v) = \frac{<v,w>}{||w||^2} \cdot w$$
+
+Il coefficiente $\frac{<v,w>}{||w||^2}$ è detto coefficiente di Fourier.
+
+Inoltre, ogni vettore $v \in V$ si può scrivere come somma delle sue proiezioni ortogonali sugli elementi della base.
+
+\section{Ortogonalizzazione di Gram-Schmidt}
+
+Se V è uno spazio vettoriale con prodotto scalare definito positivo e $v_1, ..., v_n$ una base di V, possiamo ricavare una base ortogonale formata da vettori indipendenti e ortogonali.
+
+L'algoritmo è il seguente:
+
+\begin{itemize}
+	\item $w_1 = v_1$
+	\item $w_2 = v_2 - pr_{w_1}(v_2)$
+	\item $w_3 = v_3 - pr_{w_1}(v_3) - p_{w_2}(v_3)$
+	\item $\vdots$
+	\item $w_k = v_k - pr_{w_1}(v_k) - \dots - p_{w_{k-1}}(v_k)$
+\end{itemize}
+
+In poche parole, il primo passo impone $w_1 = v_1$ e poi ad ogni passo successivo dobbiamo sottrarre al vettore i-esimo le proiezioni tra i vettori precedenti e il vettore i-esimo.
+
+\end{document}
