@@ -6,3 +6,6 @@ Gli appunti sono scritti in LaTeX e markdown e successivamente convertiti in PDF
 
 Gli appunti vengono caricati dopo ogni sessione dato che spesso, durante il semestre, questi appunti vengono modificati e/o migliorati.
 
+## Discaimer
+
+Non garantisco che gli appunti siano completamente precisi. Interpretate quanto caricato con forte spirito critico
